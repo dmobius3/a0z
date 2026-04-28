@@ -37,7 +37,7 @@ Scripts must hit these values from the paper exactly (within reported precision)
 - BTFR shift at $z = 2$: $1/E(z) = 0.330$
 - Lensing enhancement at $z = 2$: $\sqrt{E(z)} = 1.741$
 - $L^*$ archetype $r_M(0) = 8.35$ kpc, $v_\text{flat}(0) = 176$ km/s
-- ΛCDM L* M_dyn/M_b at R = 100 kpc: $14.0, 13.6, 13.7$ at $z = 0, 1, 2$
+- ΛCDM L* M_dyn/M_b at R = 100 kpc: $14.0, 13.6, 13.8$ at $z = 0, 1, 2$
 - Übler forward model: closest combined model recovers $(-0.295, -0.472)$ dex at $(z=0.9, z=2.3)$
 - Σ-tension table: joint $7.6\sigma$ / $5.1\sigma$ / $2.9\sigma$ across three uncertainty budgets
 - CMB leakage bound: $\varepsilon \lesssim 1.2 \times 10^{-5}$ at 0.5% Planck tolerance
