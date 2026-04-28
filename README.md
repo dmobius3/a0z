@@ -1,4 +1,4 @@
-# a0z: Epoch-Dependent MOND Acceleration Scale from Bounded Topology
+# a₀(z): Epoch-Dependent MOND Acceleration Scale from Bounded Topology
 
 Code and data for the paper:
 
