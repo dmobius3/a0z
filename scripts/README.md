@@ -31,8 +31,8 @@ Python pipeline that reproduces every numerical claim in the paper. To be popula
 
 Scripts must hit these values from the paper exactly (within reported precision):
 
-- Phase-operator ratio: $C(13/120)/C(34/120) = 0.1846$
-- Observed Milgrom ratio: $a_0/(cH_0) = 0.1832$
+- Phase-operator ratio: $C(13/120)/C(34/120) = 0.1845$
+- Observed Milgrom ratio: $a_0/(cH_0) = 0.1833$
 - $E(2) = 3.0327$
 - BTFR shift at $z = 2$: $1/E(z) = 0.330$
 - Lensing enhancement at $z = 2$: $\sqrt{E(z)} = 1.741$
