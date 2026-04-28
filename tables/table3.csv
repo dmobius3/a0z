@@ -1,0 +1,5 @@
+Archetype,M_b [M_sun],R_d [kpc],r_M(0) [kpc],r_M(2) [kpc],v_flat(0) [km/s],v_flat(2) [km/s]
+Dwarf (DDO 154-like),3.5e+8,0.5,0.64,0.37,49,64
+Sub-L* (NGC 2403-like),1.0e+10,1.6,3.41,1.96,112,148
+L* (NGC 6946-like),6.0e+10,2.5,8.35,4.79,176,232
+Giant (UGC 2885-like),1.5e+11,8.0,13.20,7.58,221,292
