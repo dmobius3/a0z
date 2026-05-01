@@ -196,10 +196,15 @@ def figure1_sparsity() -> Tuple[str, str]:
                 color="tab:blue", edgecolor="black", linewidth=0.6,
                 zorder=5,
             )
+            # Annotate to the LEFT of the star so the (13, 34) tag does not
+            # collide with the right-side caption box. xy is the star center,
+            # xytext sits over open histogram region between the band-left
+            # edge and the star.
             ax_bot.annotate(
                 r"$(13,\,34)$", xy=(r, 0.50),
-                xytext=(r + 0.0015, 0.78),
+                xytext=(r - 0.0040, 0.92),
                 fontsize=10, color="tab:blue",
+                ha="center", va="center",
                 arrowprops=dict(arrowstyle="-", color="tab:blue",
                                 linewidth=0.6),
             )
