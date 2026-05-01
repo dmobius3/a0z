@@ -12,7 +12,7 @@ This directory holds formatted derivatives of public observational data products
 
 ### `labbe_2023_candidates.csv`
 
-The six central-value massive candidates ($\log_{10}(M_\star/M_\odot) > 10$) used for the §7.7 collapse-time speedup analysis. Columns:
+The six central-value massive candidates ($\log_{10}(M_\star/M_\odot) > 10$) used for the §3.4 collapse-time speedup analysis. Columns:
 
 - `id`: Labbé catalog ID
 - `z_phot`: photometric redshift

@@ -2,29 +2,31 @@
 make_tables.py
 ==============
 
-Module 10 of the a0z analysis pipeline: regenerates Tables 1-7 of the paper
-(``a0-evolution-paper.md``) from the public APIs of the prior nine analysis
-modules and verifies every emitted cell against the paper's claimed value
-at the paper's displayed precision.
+Module 10 of the a0z analysis pipeline: regenerates Tables 1-8 plus
+Table B.1 of the paper (``a0-evolution-paper.md``) from the public APIs
+of the prior nine analysis modules and verifies every emitted cell
+against the paper's claimed value at the paper's displayed precision.
 
-Tables produced
----------------
+Tables produced (lean PRD numbering)
+------------------------------------
 
-Table 1 (§3.1)  Cosmology + a_0(z) at eight reference redshifts.
-                Numerical, eight rows.
-Table 2 (§3.1)  BTFR shifts at six reference redshifts. Numerical, six rows.
-Table 3 (§3.2)  Rotation-curve archetypes at z=0 and z=2. Numerical, four
-                rows (Dwarf / Sub-L* / L* / Giant).
-Table 4 (§3.3)  L* lensing M_dyn/M_b at three apertures times five redshifts.
-                Numerical.
-Table 5 (§4.5)  Summary of constraint status. Six rows. Text-only (no
-                numerical content; emitted from a literal table that mirrors
-                the paper's Table 5 exactly, with a verification check that
-                the rendered text matches).
-Table 6 (§3.5)  Five predictions from one relation. Five rows. The numeric
-                "Value at z = 2" column is computed from the analysis
-                modules; the rest is descriptive text.
-Table 7 (§5)  Falsification criteria. Six rows. Text-only.
+Table 1   (§3)    Cosmology + a_0(z) at eight reference redshifts.
+                  Numerical, eight rows.
+Table 2   (§3.1)  BTFR shifts at six reference redshifts. Numerical, six rows.
+Table 3   (§3.2)  Rotation-curve archetypes at z=0 and z=2. Numerical, four
+                  rows (Dwarf / Sub-L* / L* / Giant).
+Table 4   (§3.3)  L* lensing M_dyn/M_b at three apertures times five redshifts.
+                  Numerical.
+Table 5   (§3.5)  Five predictions from one relation. Five rows. The numeric
+                  "Value at z = 2" column is computed from the analysis
+                  modules; the rest is descriptive text.
+Table 6   (§4.5)  Summary of constraint status. Six rows. Text-only.
+Table 7   (§5)    Falsification criteria. Six rows. Text-only.
+Table 8   (§5)    Near-term test schedule. Five rows. Text-only.
+Table B.1 (App B.3) ΛCDM L* M_dyn/M_b at R = 100 kpc under three SHMR +
+                  concentration parameterizations (pessimistic /
+                  representative / optimistic) versus the framework's
+                  universal prediction. Computed via lensing module.
 
 Outputs
 -------
@@ -38,6 +40,8 @@ CSV files written to ``../tables/`` (relative to this script):
     tables/table5.csv
     tables/table6.csv
     tables/table7.csv
+    tables/table8.csv
+    tables/tableB1.csv
 
 Each CSV uses the paper's displayed precision for every numeric column and
 the paper's exact text for every text column.
@@ -477,12 +481,12 @@ def build_table5() -> Tuple[List[List[str]], List[CellCheck]]:
             ("Framework status", status, status),
         ]:
             checks.append(CellCheck(
-                table="Table 5", row_label=regime, col_label=col,
+                table="Table 6", row_label=regime, col_label=col,
                 paper=paper_v, computed=rend_v, rendered=rend_v, ok=True,
             ))
     # One extra sanity check: CMB row's structural epsilon claim.
     checks.append(CellCheck(
-        table="Table 5",
+        table="Table 6",
         row_label="CMB (z ~ 1090)",
         col_label="epsilon order-of-magnitude",
         paper="~ 1e-5",
@@ -546,7 +550,7 @@ def build_table6() -> Tuple[List[List[str]], List[CellCheck]]:
 
         ok_value = (cell == paper_value_str)
         checks.append(CellCheck(
-            table="Table 6", row_label=observable,
+            table="Table 5", row_label=observable,
             col_label="Value at z = 2",
             paper=paper_value_str, computed=raw, rendered=cell, ok=ok_value,
         ))
@@ -558,7 +562,7 @@ def build_table6() -> Tuple[List[List[str]], List[CellCheck]]:
             ("Test instrument", instrument),
         ]:
             checks.append(CellCheck(
-                table="Table 6", row_label=observable, col_label=col,
+                table="Table 5", row_label=observable, col_label=col,
                 paper=paper_v, computed=paper_v, rendered=paper_v, ok=True,
             ))
     return rendered_rows, checks
@@ -649,6 +653,178 @@ def build_table7() -> Tuple[List[List[str]], List[CellCheck]]:
 
 
 # ---------------------------------------------------------------------------
+# Table 8: near-term test schedule (§5)
+# ---------------------------------------------------------------------------
+#
+# Text-only. Five rows transcribed verbatim from §5 of the lean PRD draft.
+
+PAPER_TABLE8_ROWS: List[Tuple[str, str, str, str]] = [
+    ("Stacked lensing, z = 0.5–2",
+     "Euclid DR1",
+     "Lensing enhancement, universality",
+     "October 2026"),
+    ("Emission-line sample selection",
+     "Euclid NISP grism",
+     "Lens sample definition, redshift binning",
+     "October 2026"),
+    ("Matched-tracer BTFR",
+     "JWST NIRSpec IFU / ground IFU",
+     "BTFR normalization, trend shape",
+     "In progress"),
+    ("Resolved kinematics at Übler redshifts",
+     "JWST NIRSpec IFU",
+     "BTFR at z = 0.9, z = 2.3",
+     "In progress"),
+    ("Spectroscopic confirmation, z = 7–9",
+     "JWST NIRSpec",
+     "JWST efficiency",
+     "2025–2026"),
+]
+
+TABLE8_HEADER = ["Window", "Instrument", "Tests", "Delivery"]
+
+
+def build_table8() -> Tuple[List[List[str]], List[CellCheck]]:
+    rendered_rows = [list(r) for r in PAPER_TABLE8_ROWS]
+    checks: List[CellCheck] = []
+    for row in PAPER_TABLE8_ROWS:
+        window, instrument, tests, delivery = row
+        for col, paper_v in [
+            ("Window",     window),
+            ("Instrument", instrument),
+            ("Tests",      tests),
+            ("Delivery",   delivery),
+        ]:
+            checks.append(CellCheck(
+                table="Table 8", row_label=window, col_label=col,
+                paper=paper_v, computed=paper_v, rendered=paper_v, ok=True,
+            ))
+    return rendered_rows, checks
+
+
+# ---------------------------------------------------------------------------
+# Table B.1: App B sensitivity bracketing
+# ---------------------------------------------------------------------------
+#
+# Three (M_halo, c) parameterizations at the L* archetype, R = 100 kpc:
+# pessimistic, representative, optimistic. M_dyn/M_b is computed from
+# lensing.M_dyn_over_Mb_LambdaCDM at each (z=0, z=2) endpoint and
+# rounded to the paper's 1 dp display. The "Framework / LCDM @ z=2"
+# column is the absolute discriminator factor.
+#
+# The fourth row is the framework's universal prediction at L*, R = 100,
+# pulled directly from the Table 4 Newtonian-inversion proxy at z=0 and
+# z=2. It carries no halo parameters (the framework prediction is
+# halo-free), and no framework/LCDM ratio (it is the numerator).
+
+PAPER_TABLE_B1_ROWS_TEMPLATE: List[Tuple[str, Tuple[float, float],
+                                          Tuple[float, float],
+                                          Tuple[float, float], float]] = [
+    # (label, (M_halo_z0, c_z0), (M_halo_z2, c_z2), (paper_dyn_z0, paper_dyn_z2), paper_factor)
+    ("Pessimistic",     (2.0e12, 9.0), (1.0e12, 4.5), (17.7, 17.5), 1.19),
+    ("Representative",  (1.5e12, 7.5), (7.0e11, 3.5), (14.0, 13.8), 1.52),
+    ("Optimistic",      (1.0e12, 6.0), (5.0e11, 2.5), (10.3, 11.2), 1.86),
+]
+
+# Framework (universal) row uses the L*, R = 100 kpc Table 4 values.
+PAPER_TABLE_B1_FRAMEWORK_ROW = ("Framework (universal)", "—", "—",
+                                 (11.98, 20.86), "—")
+
+TABLE_B1_HEADER = ["Parameterization",
+                   "(M_halo, c) at z = 0",
+                   "(M_halo, c) at z = 2",
+                   "M_dyn/M_b: z=0 / z=2",
+                   "Framework / ΛCDM at z=2"]
+
+
+def _format_halo_pair(M_halo: float, c: float) -> str:
+    """Format (M_halo, c) like '(2.0e12, 9.0)'."""
+    return f"({M_halo:.1e}, {c})"
+
+
+def build_table_b1() -> Tuple[List[List[str]], List[CellCheck]]:
+    """Compute Table B.1 from lensing.M_dyn_over_Mb_LambdaCDM at L*, R=100 kpc.
+
+    Each LCDM row's M_dyn/M_b at z=0 and z=2 is computed from the row's
+    halo parameterization, rounded to 1 dp, and verified against the
+    paper-quoted value. The framework/LCDM ratio is the absolute
+    discriminator at z=2 using the framework's L* M_dyn/M_b = 20.86 at
+    R = 100 (Table 4 row z=2).
+    """
+    R_kpc = 100.0
+    M_b = lensing.M_B_LSTAR  # 6.0e10 M_sun
+    framework_at_z2 = lensing.M_dyn_over_Mb_framework(R_kpc, 2.0, M_b)
+
+    checks: List[CellCheck] = []
+    rendered_rows: List[List[str]] = []
+
+    for row in PAPER_TABLE_B1_ROWS_TEMPLATE:
+        label, halo_z0, halo_z2, paper_dyn, paper_factor = row
+        M_halo_z0, c_z0 = halo_z0
+        M_halo_z2, c_z2 = halo_z2
+        paper_dyn_z0, paper_dyn_z2 = paper_dyn
+
+        # Compute LCDM M_dyn/M_b at each redshift under this halo pair.
+        comp_dyn_z0 = lensing.M_dyn_over_Mb_LambdaCDM(
+            R_kpc, 0.0, M_b, M_halo_z0, c_z0,
+        )
+        comp_dyn_z2 = lensing.M_dyn_over_Mb_LambdaCDM(
+            R_kpc, 2.0, M_b, M_halo_z2, c_z2,
+        )
+        comp_factor = framework_at_z2 / comp_dyn_z2
+
+        # Round to paper display precision.
+        rounded_z0 = round(comp_dyn_z0, 1)
+        rounded_z2 = round(comp_dyn_z2, 1)
+        rounded_factor = round(comp_factor, 2)
+
+        rendered_rows.append([
+            label,
+            _format_halo_pair(M_halo_z0, c_z0),
+            _format_halo_pair(M_halo_z2, c_z2),
+            f"{rounded_z0:.1f} / {rounded_z2:.1f}",
+            f"{rounded_factor:.2f}",
+        ])
+
+        # Cell-by-cell verification against the paper-quoted values.
+        for col, paper_v, comp_v, ok in [
+            ("M_dyn/M_b z=0",  paper_dyn_z0, rounded_z0, rounded_z0 == paper_dyn_z0),
+            ("M_dyn/M_b z=2",  paper_dyn_z2, rounded_z2, rounded_z2 == paper_dyn_z2),
+            ("Framework/ΛCDM", paper_factor, rounded_factor, rounded_factor == paper_factor),
+        ]:
+            checks.append(CellCheck(
+                table="Table B.1", row_label=label, col_label=col,
+                paper=str(paper_v), computed=str(comp_v),
+                rendered=str(comp_v), ok=ok,
+            ))
+
+    # Framework (universal) row: absolute L*, R = 100 framework values.
+    fw_label, fw_halo_z0, fw_halo_z2, fw_dyn, fw_factor = PAPER_TABLE_B1_FRAMEWORK_ROW
+    fw_dyn_z0, fw_dyn_z2 = fw_dyn
+    framework_at_z0 = lensing.M_dyn_over_Mb_framework(R_kpc, 0.0, M_b)
+    rendered_rows.append([
+        fw_label, fw_halo_z0, fw_halo_z2,
+        f"{round(framework_at_z0, 2):.2f} / {round(framework_at_z2, 2):.2f}",
+        fw_factor,
+    ])
+    for col, paper_v, comp_v, ok in [
+        ("Framework M_dyn/M_b z=0",
+         fw_dyn_z0, round(framework_at_z0, 2),
+         round(framework_at_z0, 2) == fw_dyn_z0),
+        ("Framework M_dyn/M_b z=2",
+         fw_dyn_z2, round(framework_at_z2, 2),
+         round(framework_at_z2, 2) == fw_dyn_z2),
+    ]:
+        checks.append(CellCheck(
+            table="Table B.1", row_label=fw_label, col_label=col,
+            paper=str(paper_v), computed=str(comp_v),
+            rendered=str(comp_v), ok=ok,
+        ))
+
+    return rendered_rows, checks
+
+
+# ---------------------------------------------------------------------------
 # CSV writer
 # ---------------------------------------------------------------------------
 
@@ -683,7 +859,7 @@ def _print_table(title: str, header: Sequence[str], rows: Sequence[Sequence[str]
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Generate Tables 1-7 of the a0z paper from the analysis modules.",
+        description="Generate Tables 1-8 + Table B.1 of the a0z paper from the analysis modules.",
     )
     parser.add_argument(
         "--no-verify", action="store_true",
@@ -699,7 +875,7 @@ def main() -> int:
 
     # Build every table
     builds = [
-        ("table1.csv", "Table 1 (§3.1, cosmology + a_0(z))",
+        ("table1.csv", "Table 1 (§3, cosmology + a_0(z))",
          TABLE1_HEADER, *build_table1()),
         ("table2.csv", "Table 2 (§3.1, BTFR shifts)",
          TABLE2_HEADER, *build_table2()),
@@ -707,12 +883,23 @@ def main() -> int:
          TABLE3_HEADER, *build_table3()),
         ("table4.csv", "Table 4 (§3.3, L* lensing M_dyn/M_b)",
          TABLE4_HEADER, *build_table4()),
-        ("table5.csv", "Table 5 (§4.5, constraint status)",
-         TABLE5_HEADER, *build_table5()),
-        ("table6.csv", "Table 6 (§3.5, predictions @ z = 2)",
+        # Tables 5 and 6 swap content vs. the build_tableN function
+        # names below: lean Table 5 is the §3.5 predictions summary
+        # (built by build_table6) and lean Table 6 is the §4.5
+        # constraint status (built by build_table5). The Python
+        # identifier names are kept for minimum disruption; only the
+        # CSV filenames and human-facing labels reflect the lean
+        # numbering.
+        ("table5.csv", "Table 5 (§3.5, predictions @ z = 2)",
          TABLE6_HEADER, *build_table6()),
+        ("table6.csv", "Table 6 (§4.5, constraint status)",
+         TABLE5_HEADER, *build_table5()),
         ("table7.csv", "Table 7 (§5, falsification criteria)",
          TABLE7_HEADER, *build_table7()),
+        ("table8.csv", "Table 8 (§5, near-term test schedule)",
+         TABLE8_HEADER, *build_table8()),
+        ("tableB1.csv", "Table B.1 (App B.3, ΛCDM bracketing at L*, R = 100 kpc)",
+         TABLE_B1_HEADER, *build_table_b1()),
     ]
 
     all_checks: List[CellCheck] = []
@@ -740,9 +927,18 @@ def main() -> int:
     for c in all_checks:
         by_table.setdefault(c.table, []).append(c)
 
+    def _table_sort_key(name: str) -> Tuple[int, str]:
+        # Numeric "Table 1".."Table 8" first (in numeric order), then
+        # appendix tables like "Table B.1" by lexical token after the
+        # leading "Table ".
+        token = name.split()[1]
+        if token[:1].isdigit():
+            return (0, f"{int(token):02d}")
+        return (1, token)
+
     print("Verification summary (per table):")
     overall_ok = True
-    for table_name in sorted(by_table.keys(), key=lambda s: int(s.split()[1])):
+    for table_name in sorted(by_table.keys(), key=_table_sort_key):
         cells = by_table[table_name]
         n_total = len(cells)
         n_ok = sum(1 for c in cells if c.ok)

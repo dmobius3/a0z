@@ -1,0 +1,5 @@
+Parameterization,"(M_halo, c) at z = 0","(M_halo, c) at z = 2",M_dyn/M_b: z=0 / z=2,Framework / ΛCDM at z=2
+Pessimistic,"(2.0e+12, 9.0)","(1.0e+12, 4.5)",17.7 / 17.5,1.19
+Representative,"(1.5e+12, 7.5)","(7.0e+11, 3.5)",14.0 / 13.8,1.52
+Optimistic,"(1.0e+12, 6.0)","(5.0e+11, 2.5)",10.3 / 11.2,1.86
+Framework (universal),—,—,11.98 / 20.86,—

@@ -14,28 +14,31 @@ The paper derives an epoch-dependent MOND acceleration scale
 
 $$a_0(z) = a_0(0) \cdot E(z)$$
 
-within Mode Identity Theory, where $E(z) = H(z)/H_0$ is the standard Friedmann dimensionless Hubble parameter. The local Milgrom ratio $a_0/(cH_0)$ is predicted as the structural ratio of two phase-operator values at adjacent Fibonacci wells of the framework's 120-domain, $C(13/120)/C(34/120) = 0.1845$, agreeing with observation at the 0.7% level.
+within a bounded-topology measurement framework, where $E(z) = H(z)/H_0$ is the Friedmann dimensionless Hubble parameter. The local Milgrom ratio $a_0/(cH_0)$ is predicted as the structural ratio of two phase-operator values at adjacent Fibonacci wells of the framework's 120-domain, $C(13/120)/C(34/120) = 0.1845$, agreeing with observation at the 0.7% level.
 
 Five distinct observable channels follow from the single relation $a_0(z) \propto E(z)$ as different powers of $E(z)$:
 
-- BTFR normalization shifts as $E(z)^{-1}$ (§4)
-- MOND transition radius contracts as $E(z)^{-1/2}$ (§5)
-- Asymptotic flat velocity at fixed baryonic mass rises as $E(z)^{+1/4}$ (§4–5)
-- Lensing-inferred $M_\text{dyn}/M_b$ enhancement scales as $E(z)^{+1/2}$ (§6)
-- Free-fall collapse-time speedup as $E(z)^{-1/4}$ (§7.7, supporting evidence)
+- BTFR normalization shifts as $E(z)^{-1}$ (§3.1)
+- MOND transition radius contracts as $E(z)^{-1/2}$ (§3.2)
+- Asymptotic flat velocity at fixed baryonic mass rises as $E(z)^{+1/4}$ (§3.2)
+- Lensing-inferred $M_\text{dyn}/M_b$ enhancement scales as $E(z)^{+1/2}$ (§3.3)
+- Free-fall collapse-time speedup as $E(z)^{-1/4}$ (§3.4, supporting evidence)
 
 Reproducible results in this repository:
 
-- **a₀(z) tabulation** across $z = 0$ to $15$ (Table 1, §3.1)
-- **BTFR evolution** at six reference redshifts (Table 2, §4.2)
-- **Rotation-curve archetype predictions** for four baryonic-mass anchors (Table 3, §5.2)
-- **Lensing $M_\text{dyn}/M_b$** at three apertures across five redshifts (Table 4, §6.3)
-- **ΛCDM lensing discriminator** (NFW + Moster SHMR + Duffy concentration; §6.2 and Appendix B)
-- **Übler 2017 KMOS3D σ-tension** under three uncertainty budgets (§7.2)
-- **CMB leakage-coupling bound** $\varepsilon \lesssim 10^{-5}$ from Planck first-peak amplitude (§7.5)
-- **Combinatorial baseline** for the Milgrom-ratio match (§2.5)
-- **Labbé candidate speedup factors** for the §7.7 supporting analysis
-- **Constraint summary** (Table 5), **predictions summary** (Table 6), **falsification criteria** (Table 7)
+- **a₀(z) tabulation** across $z = 0$ to $15$ (Table 1, §3)
+- **BTFR evolution** at six reference redshifts (Table 2, §3.1)
+- **Rotation-curve archetype predictions** for four baryonic-mass anchors (Table 3, §3.2)
+- **Lensing $M_\text{dyn}/M_b$** at three apertures across five redshifts (Table 4, §3.3)
+- **Five-prediction summary** at $z = 2$ (Table 5, §3.5)
+- **Constraint-status summary** across five regimes (Table 6, §4.5)
+- **Falsification criteria** for each predicted exponent (Table 7, §5)
+- **Near-term test schedule** (Table 8, §5)
+- **ΛCDM lensing discriminator with pess/repr/opt bracketing** (Table B.1, App B.3)
+- **Übler 2017 KMOS3D σ-tension** under three uncertainty budgets (§4.1)
+- **CMB leakage-coupling bound** $\varepsilon \leq 1.2 \times 10^{-5}$ at 0.5% Planck tolerance (§4.3)
+- **Combinatorial baseline** for the Milgrom-ratio match: 24 of 7,021 pairs match within 1%; 6 unique value-pairs after reflection collapse; 1 of 6 within the Fibonacci subset $\{13, 21, 34, 55\}/120$ (§2)
+- **Labbé candidate speedup factors** $E(z)^{1/4} \in [1.92, 2.06]$ (§3.4)
 
 ---
 
@@ -58,21 +61,24 @@ Citation metadata is in `CITATION.cff` (machine-readable) and the Zenodo record 
 │   ├── README.md                        Provenance and reference for observational inputs
 │   └── labbe_2023_candidates.csv        Labbé et al. 2023 candidate IDs and photometric redshifts
 ├── scripts/
+│   ├── README.md                        Module overview and verification target list
 │   ├── cosmology.py                     E(z), H(z), t_age(z) under flat ΛCDM (Planck 2018)
 │   ├── framework.py                     C(Θ), N_H, scaling-law evaluation, well assignments
-│   ├── btfr.py                          §4 BTFR normalization and velocity scaling
-│   ├── rotation_curves.py               §5 r_M, v_flat at archetype masses
-│   ├── lensing.py                       §6 M_dyn/M_b, NFW comparison (Appendix B)
-│   ├── jwst_speedup.py                  §7.7 free-fall collapse, Labbé candidates
-│   ├── ubler_sigma_tension.py           §7.2 analytic σ-tension table
-│   ├── cmb_leakage.py                   §7.5 ε bound from Planck first-peak amplitude
-│   ├── combinatorial_baseline.py        §2.5 sparsity check on 120-domain
-│   ├── make_tables.py                   Generate Tables 1–7 from the above
-│   └── make_figures.py                  Generate Figures 1–5 from the above
+│   ├── combinatorial_baseline.py        §2 sparsity check on the 120-domain
+│   ├── btfr.py                          §3.1 BTFR normalization and velocity scaling
+│   ├── rotation_curves.py               §3.2 r_M, v_flat at archetype masses
+│   ├── lensing.py                       §3.3 + App B M_dyn/M_b, ΛCDM NFW comparison
+│   ├── jwst_speedup.py                  §3.4 free-fall collapse, Labbé candidates
+│   ├── ubler_sigma_tension.py           §4.1 analytic σ-tension table
+│   ├── cmb_leakage.py                   §4.3 ε bound from Planck first-peak amplitude
+│   ├── verify.py                        Single-command pass/fail harness across all modules
+│   ├── make_tables.py                   Generate Tables 1–8 + Table B.1 from the analysis modules
+│   └── make_figures.py                  Generate paper figures from the analysis modules
 ├── figures/
-│   └── figure{1..5}.{pdf,png}           One PDF and one PNG per paper figure (§§3.2, 4.3, 5.3, 5.4, 6.4)
+│   └── figure{1..5}.{pdf,png}           One PDF and one PNG per paper figure
 └── tables/
-    └── table{1..7}.csv                  One CSV per paper table (§§3.1, 4.2, 5.2, 6.3, 7.8, 9.1, 9.2)
+    ├── table{1..8}.csv                  One CSV per paper table (§3 / §3.1 / §3.2 / §3.3 / §3.5 / §4.5 / §5 / §5)
+    └── tableB1.csv                      App B.3 ΛCDM bracketing at L*, R = 100 kpc
 ```
 
 ---
@@ -102,13 +108,25 @@ Total install footprint about 100 MB. The full pipeline (all tables + all figure
 
 ---
 
+## Verification
+
+A single command checks every numerical claim in the paper against the corresponding script output:
+
+```bash
+python scripts/verify.py
+```
+
+Exit code 0 plus `All modules report green against the lean PRD draft of the paper.` means every assertion the paper depends on is reproducible from the scripts. Exit code 1 prints the failure list module-by-module with the relevant stdout tail.
+
+---
+
 ## Quickstart: reproducing all paper numbers
 
 ```bash
-# Generate Tables 1–7 (writes tables/table{1..7}.csv and verifies every cell against the paper)
+# Generate Tables 1–8 (and Table B.1)
 python scripts/make_tables.py
 
-# Generate Figures 1–5 (writes figures/figure{1..5}.{pdf,png})
+# Generate paper figures
 python scripts/make_figures.py
 ```
 
@@ -117,13 +135,13 @@ Each analysis module also runs standalone and prints its own per-claim verificat
 ```bash
 python scripts/cosmology.py            # §3 cosmology + Table 1 row spot-checks
 python scripts/framework.py            # §2 phase-operator ratios
-python scripts/btfr.py                 # §4 Table 2 + L* worked example
-python scripts/rotation_curves.py      # §5 archetype rotation curves
-python scripts/lensing.py              # §6 + Appendix B M_dyn/M_b
-python scripts/jwst_speedup.py         # §7.7 Labbé speedup factors
-python scripts/ubler_sigma_tension.py  # §7.2 σ-tension table
-python scripts/cmb_leakage.py          # §7.5 ε bound
-python scripts/combinatorial_baseline.py  # §2.5 sparsity (accepts --target, --tol, --list-matches)
+python scripts/combinatorial_baseline.py  # §2 sparsity (accepts --target, --tol, --list-matches)
+python scripts/btfr.py                 # §3.1 Table 2 + L* worked example
+python scripts/rotation_curves.py      # §3.2 archetype rotation curves
+python scripts/lensing.py              # §3.3 + App B M_dyn/M_b
+python scripts/jwst_speedup.py         # §3.4 Labbé speedup factors
+python scripts/ubler_sigma_tension.py  # §4.1 σ-tension table
+python scripts/cmb_leakage.py          # §4.3 ε bound
 ```
 
 Pipeline runtime is well under one minute on a recent laptop. No fitting, no MCMC; predictions are deterministic given the Planck 2018 cosmology and the framework's $z = 0$ well assignments ($\Theta_{a_0} = 13/120$, $\Theta_H = 34/120$).
@@ -147,8 +165,9 @@ The Labbé candidate file under `data/` is a formatted derivative of the public 
 ## Reproducibility notes
 
 - **No fitting**: the predictions in this paper are deterministic given the framework's well assignments at $z = 0$ ($\Theta_{a_0} = 13/120$, $\Theta_H = 34/120$) and the standard ΛCDM cosmology (Planck 2018). There are no MCMC chains to converge.
-- **No Monte Carlo**: every prediction in this pipeline is closed-form. The §7.2 σ-tension table is analytic; the §6 LCDM comparison uses closed-form NFW enclosed mass; the §7.7 speedup factors are direct evaluations of $E(z)^{1/4}$.
+- **No Monte Carlo**: every prediction in this pipeline is closed-form. The §4.1 σ-tension table is analytic; the §3.3 / Appendix B ΛCDM comparison uses closed-form NFW enclosed mass; the §3.4 speedup factors are direct evaluations of $E(z)^{1/4}$.
 - **Numerical accuracy**: the cosmic-age integral uses SciPy's `quad` with `epsrel=1e-8`; NFW enclosed-mass evaluation is closed-form.
+- **Random seeds**: where Monte Carlo is added in subsequent modules (e.g., a forward-model variant of the §4.1 Übler analysis), every script accepts a `--seed` argument; default is 42 for deterministic outputs.
 - **Platform**: tested on macOS 14.x and Ubuntu 22.04 with Python 3.11. No GPU required.
 
 ---
@@ -164,4 +183,4 @@ This repository is released under the MIT License. See `LICENSE` for the full te
 - Author: B. Shatto, bshatto.pe@gmail.com
 - Issues and questions: please open a [GitHub issue](https://github.com/dmobius3/a0z/issues).
 
-For broader work on Mode Identity Theory, see the framework repository at [github.com/dmobius3/mode-identity-theory](https://github.com/dmobius3/mode-identity-theory). For the companion paper on the surface sector (Λcos), see [github.com/dmobius3/lambdacos](https://github.com/dmobius3/lambdacos).
+For broader work on the framework, see the framework repository at [github.com/dmobius3/mode-identity-theory](https://github.com/dmobius3/mode-identity-theory). For the companion paper on the surface sector (Λcos), see [github.com/dmobius3/lambdacos](https://github.com/dmobius3/lambdacos).
