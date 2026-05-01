@@ -78,7 +78,7 @@ if _SCRIPT_DIR not in sys.path:
     sys.path.insert(0, _SCRIPT_DIR)
 
 # All nine analysis modules are imported per the Module 10 spec, even
-# though Tables 1-7 only consume a subset of their public APIs.
+# though Tables 1-8 + B.1 only consume a subset of their public APIs.
 import cosmology  # noqa: F401  -- E(z), H(z), t_age(z) for Table 1
 import framework  # noqa: F401  -- A0_SPARC_LOCAL anchor, mode constants
 import btfr       # noqa: F401  -- A_BTFR, A/A0, M_b, v_flat ratios for Table 2
@@ -159,7 +159,7 @@ def _render_a0(a0_si: float) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Table 1: cosmology + a_0(z) at eight reference redshifts (§3.1)
+# Table 1: cosmology + a_0(z) at eight reference redshifts (§3)
 # ---------------------------------------------------------------------------
 #
 # Per the user's hint and Module 1's verification table, Table 1's a_0(z)
@@ -403,7 +403,9 @@ def build_table4() -> Tuple[List[List[str]], List[CellCheck]]:
 
 
 # ---------------------------------------------------------------------------
-# Table 5: summary of constraint status (§4.5)
+# build_table5 (Python identifier): constraint status content (§4.5)
+# Emitted as lean Table 6 / table6.csv via the swap in main(). The
+# Python name is kept for minimum diff against the original drop.
 # ---------------------------------------------------------------------------
 #
 # Table 5 is purely qualitative text. The "Framework status" column is a
@@ -420,18 +422,18 @@ PAPER_TABLE5_ROWS: List[Tuple[str, str, str]] = [
     ),
     (
         "Intermediate-z BTFR",
-        "Übler 2017 [9]",
+        "Übler 2017 [10]",
         ("Live tension on trend shape; forward-model analysis confirms not "
          "a velocity-correction artifact"),
     ),
     (
         "Intermediate-z rotation curves",
-        "Genzel 2017 [10]",
+        "Genzel 2017 [22]",
         "Qualitatively consistent; not a sharp quantitative test",
     ),
     (
         "Galaxy clusters",
-        "Pointecouteau-Silk 2005 [12]",
+        "Pointecouteau-Silk 2005 [14]",
         ("Inherited problem unaddressed by epoch-dependent a_0; not "
          "worsened by the framework"),
     ),
@@ -498,7 +500,9 @@ def build_table5() -> Tuple[List[List[str]], List[CellCheck]]:
 
 
 # ---------------------------------------------------------------------------
-# Table 6: five predictions from one relation (§3.5)
+# build_table6 (Python identifier): five predictions from one relation (§3.5)
+# Emitted as lean Table 5 / table5.csv via the swap in main(). The
+# Python name is kept for minimum diff against the original drop.
 # ---------------------------------------------------------------------------
 #
 # Cols: Section | Observable | Scaling | Value at z = 2 | Test instrument
@@ -580,7 +584,7 @@ def build_table6() -> Tuple[List[List[str]], List[CellCheck]]:
 # applies to the §4.1 σ-tension table, which is unnumbered prose, not
 # Table 7. Tables 5, 6, 7 in the paper are at §3.5, §4.5, §5 respectively.
 # This script does NOT emit a CSV for the σ-tension table because it is
-# not one of Tables 1-7; the σ-tension table is reproduced separately by
+# not one of Tables 1-8 + B.1; the σ-tension table is reproduced separately by
 # Module 7 (`ubler_sigma_tension.py`).)
 
 PAPER_TABLE7_ROWS: List[Tuple[str, str, str, str]] = [
@@ -618,7 +622,7 @@ PAPER_TABLE7_ROWS: List[Tuple[str, str, str, str]] = [
          "aperture-independent"),
         ("Single-z inconsistency at >= 2 sigma, OR mass/aperture-stratified "
          "analysis showing mass- or aperture-dependent shift"),
-        "Halo-concentration evolution model (Duffy et al. 2008 [15] baseline)",
+        "Halo-concentration evolution model (Duffy et al. 2008 [12] baseline)",
     ),
     (
         "§3.4 JWST efficiency",

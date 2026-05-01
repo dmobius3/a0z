@@ -3,13 +3,13 @@ cosmology.py
 ============
 
 Flat LambdaCDM expansion history under Planck 2018 parameters, as specified in
-section 3 of the paper:
+§3 of the paper:
 
     E(z) = sqrt( Omega_m (1+z)^3 + Omega_r (1+z)^4 + Omega_Lambda )      (3.2)
     H(z) = H_0 * E(z)
     t_age(z) = integral_z^infty dz' / [(1+z') H(z')]                     (3.3)
 
-Planck 2018 parameters (paper section 3.1, citation [20]):
+Planck 2018 parameters (paper §3, citation [6]):
     Omega_m      = 0.315
     Omega_r      = 9.2e-5
     Omega_Lambda = 0.685
@@ -33,7 +33,7 @@ from scipy import integrate
 
 
 # ---------------------------------------------------------------------------
-# Planck 2018 parameters (section 3.1)
+# Planck 2018 parameters (§3, citation [6])
 # ---------------------------------------------------------------------------
 
 OMEGA_M = 0.315
@@ -55,7 +55,7 @@ HUBBLE_TIME_GYR = (KM_PER_MPC / SECONDS_PER_GYR) / H0_KM_S_MPC  # 1/H0 in Gyr
 
 @dataclass(frozen=True)
 class Cosmology:
-    """Flat LambdaCDM with radiation. Defaults are Planck 2018 (section 3.1)."""
+    """Flat LambdaCDM with radiation. Defaults are Planck 2018 (paper §3, citation [6])."""
     Omega_m: float = OMEGA_M
     Omega_r: float = OMEGA_R
     Omega_Lambda: float = OMEGA_LAMBDA

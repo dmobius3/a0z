@@ -6,13 +6,13 @@ Rotation-curve predictions across cosmic time (paper §3.2).
 
 Key relations:
 
-  - MOND transition radius (eq. 5.1):
+  - MOND transition radius (§3.2 prose):
         r_M(z) = sqrt( G * M_b / a_0(z) )
   - Fractional shifts (eqs. 5.2, 5.3):
         r_M(z) / r_M(0)        = 1 / sqrt(E(z))   (mass-independent)
         v_flat(z) / v_flat(0)  = E(z)^(1/4)       (mass-independent, deep MOND)
 
-The asymptotic flat velocity is the BTFR statement (4.1):
+The asymptotic flat velocity is the deep-MOND BTFR statement (paper §3.1):
         v_flat = ( G * M_b * a_0(z) )^(1/4).
 
 Convention (carried over from Module 3 / btfr.py):
@@ -73,7 +73,7 @@ def a0_of_z_anchored(z, cosmo: Cosmology = PLANCK18,
 def r_M(M_b_solar: float, z: float = 0.0,
         cosmo: Cosmology = PLANCK18,
         a0_local: float = A0_SPARC_LOCAL) -> float:
-    """MOND transition radius in kpc, eq. (5.1):
+    """MOND transition radius in kpc (§3.2 prose):
 
         r_M(z) = sqrt( G * M_b / a_0(z) ).
     """
@@ -84,7 +84,7 @@ def r_M(M_b_solar: float, z: float = 0.0,
 
 
 def r_M_ratio(z, cosmo: Cosmology = PLANCK18) -> float:
-    """r_M(z) / r_M(0) = 1 / sqrt( E(z)/E(0) ), eq. (5.2) anchored."""
+    """r_M(z) / r_M(0) = 1 / sqrt( E(z)/E(0) ), eq. (3.2) anchored."""
     return 1.0 / np.sqrt(_E_eff(z, cosmo=cosmo))
 
 
@@ -95,7 +95,7 @@ def r_M_ratio(z, cosmo: Cosmology = PLANCK18) -> float:
 def v_flat(M_b_solar: float, z: float = 0.0,
            cosmo: Cosmology = PLANCK18,
            a0_local: float = A0_SPARC_LOCAL) -> float:
-    """Asymptotic flat velocity in km/s, deep-MOND BTFR (4.1):
+    """Asymptotic flat velocity in km/s, deep-MOND BTFR (§3.1):
 
         v_flat(z) = ( G * M_b * a_0(z) )^(1/4).
     """
@@ -106,7 +106,7 @@ def v_flat(M_b_solar: float, z: float = 0.0,
 
 
 def v_flat_ratio(z, cosmo: Cosmology = PLANCK18) -> float:
-    """v_flat(z) / v_flat(0) = ( E(z)/E(0) )^(1/4), eq. (5.3) anchored."""
+    """v_flat(z) / v_flat(0) = ( E(z)/E(0) )^(1/4) (§3.2 prose, anchored)."""
     return _E_eff(z, cosmo=cosmo) ** 0.25
 
 
@@ -252,7 +252,7 @@ def main():
     Lstar = next(a for a in ARCHETYPES if a.name.startswith("L*"))
     v0_L = v_flat(Lstar.M_b, 0.0)
     v2_L = v_flat(Lstar.M_b, 2.0)
-    print(f"§3.2 Figure 3 L* asymptotes:")
+    print(f"Supplementary figure3 L* asymptotes (cross-check of §3.2):")
     print(f"  v_flat(0) = {v0_L:.4f} km/s  (paper: 176)  "
           f"match: {int(round(v0_L)) == 176}")
     print(f"  v_flat(2) = {v2_L:.4f} km/s  (paper: 232)  "

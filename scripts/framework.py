@@ -2,7 +2,7 @@
 framework.py
 ============
 
-Mode Identity Theory framework primitives used throughout the paper:
+Bounded-topology framework primitives used throughout the paper:
 the phase operator C(Theta), the edge-mode hierarchy normalization N_H(z),
 the Fibonacci-well assignments at z = 0, and the scaling-law evaluation
 that turns those into dimensional predictions.

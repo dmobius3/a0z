@@ -8,11 +8,11 @@ Deep-MOND BTFR (paper §3.1):
 
     v_flat^4 = G * M_b * a_0(z),
 
-so that with the framework prediction a_0(z) = a_0(0) * E(z) (eq. 3.1):
+so that with the framework prediction a_0(z) = a_0(0) * E(z) (eq. (1.2)):
 
-    A_BTFR(z) / A_BTFR(0) = a_0(0) / a_0(z) = 1 / E(z),       (4.3)
-    v_flat(z) / v_flat(0) = E(z)^(1/4)        at fixed M_b,    (4.4)
-    M_b(z)    / M_b(0)    = 1 / E(z)          at fixed v_flat. (4.5)
+    A_BTFR(z) / A_BTFR(0) = a_0(0) / a_0(z) = 1 / E(z),       (3.1)
+    v_flat(z) / v_flat(0) = E(z)^(1/4)        at fixed M_b,
+    M_b(z)    / M_b(0)    = 1 / E(z)          at fixed v_flat.
 
 The local theoretical normalization is
 
@@ -30,7 +30,7 @@ Verification targets in §3.1:
       at z = 0, 0.5, 1, 2, 5, 10
     - At z = 2: 1/E(z) = 0.330  (also in scripts/README.md)
     - L* worked example: M_b = 6e10 M_sun, v_flat(0) = 176 km/s,
-      predicts v_flat(2) ~= 232 km/s under (4.4).
+      predicts v_flat(2) ~= 232 km/s under the v_flat ~ E^(1/4) scaling.
 """
 
 from __future__ import annotations
@@ -76,7 +76,7 @@ def A_BTFR_solar_per_kms4(a0: float) -> float:
 
 
 # ---------------------------------------------------------------------------
-# §3.1 evolution relations (4.3)-(4.5)
+# §3.1 evolution relations (boxed eq. (3.1) and the derived ratios)
 # ---------------------------------------------------------------------------
 
 def _E_eff(z, cosmo: Cosmology = PLANCK18) -> float:
@@ -92,23 +92,23 @@ def _E_eff(z, cosmo: Cosmology = PLANCK18) -> float:
 
 
 def A_ratio(z, cosmo: Cosmology = PLANCK18) -> float:
-    """A_BTFR(z) / A_BTFR(0) = E(0)/E(z), eq. (4.3) under E(0)=1 anchor."""
+    """A_BTFR(z) / A_BTFR(0) = E(0)/E(z), eq. (3.1) under E(0)=1 anchor."""
     return 1.0 / _E_eff(z, cosmo=cosmo)
 
 
 def Mb_ratio_fixed_v(z, cosmo: Cosmology = PLANCK18) -> float:
-    """M_b(z, v_flat) / M_b(0, v_flat) = E(0)/E(z), eq. (4.5) anchored."""
+    """M_b(z, v_flat) / M_b(0, v_flat) = E(0)/E(z) (§3.1 prose, anchored)."""
     return 1.0 / _E_eff(z, cosmo=cosmo)
 
 
 def v_ratio_fixed_Mb(z, cosmo: Cosmology = PLANCK18) -> float:
-    """v_flat(z, M_b) / v_flat(0, M_b) = (E(z)/E(0))^(1/4), eq. (4.4) anchored."""
+    """v_flat(z, M_b) / v_flat(0, M_b) = (E(z)/E(0))^(1/4) (§3.1 prose, anchored)."""
     return _E_eff(z, cosmo=cosmo) ** 0.25
 
 
 def A_BTFR_at_z(z, a0_local: float = A0_SPARC_LOCAL,
                 cosmo: Cosmology = PLANCK18) -> float:
-    """A_BTFR(z) in M_sun / (km/s)^4. Combines (4.3) with the local
+    """A_BTFR(z) in M_sun / (km/s)^4. Combines eq. (3.1) with the local
     theoretical normalization 1/(G a_0(0))."""
     return A_BTFR_solar_per_kms4(a0_local) * A_ratio(z, cosmo=cosmo)
 

@@ -70,8 +70,10 @@ LambdaCDM comparison (Appendix B, also §3.3):
     z = 0 / 0.5 / 1 / 2 / 5; values within each row scale as sqrt(E(z)).
   - §3.3 prose: 92% inferred dark-mass fraction at z = 0; 95% at z = 2,
     using R = 100 kpc framework values 11.98 and 20.86.
-  - §3.3 Figure 5: vertical offset between curves equals
-    log10(sqrt(E(z))) at each redshift.
+  - Supplementary visualization (figure5.pdf via make_figures.py):
+    vertical offset between curves equals log10(sqrt(E(z))) at each
+    redshift; this is a derived consistency check on §3.3, not a
+    paper figure (the lean PRD draft has no figures).
 
 Imports:
   - cosmology: PLANCK18, raw E(z), H_0, KM_PER_MPC
@@ -293,7 +295,7 @@ def main():
     check("dark-mass fraction at z=2 (paper: 95%)", 95, dark_pct_2, 0)
 
     print()
-    print("§3.3 Figure 5 vertical offset = log10(sqrt(E(z))):")
+    print("Supplementary figure5 vertical offset = log10(sqrt(E(z))):")
     for z, sqE_target in [(0.0, 1.0), (1.0, 1.338), (2.0, 1.741)]:
         offset = np.log10(fractional_lensing_enhancement(z))
         target_offset = round(np.log10(sqE_target), 4)

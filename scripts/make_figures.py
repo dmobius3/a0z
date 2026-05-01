@@ -2,9 +2,12 @@
 make_figures.py
 ===============
 
-Module 11 of the a0z analysis pipeline: generate Figures 1-5 of the paper
-from the public APIs of the prior modules. No physics is rederived here;
-this script is purely a presentation layer that calls into:
+Module 11 of the a0z analysis pipeline: generate supplementary visual
+figures from the public APIs of the prior modules. The lean PRD draft
+of the paper itself contains no figures; these PDFs/PNGs are
+script-generated companion visuals, with each panel anchored to the
+paper section whose content it visualizes. No physics is rederived
+here; this script is purely a presentation layer that calls into:
 
     cosmology       (Module 1) for E(z)
     framework       (Module 2) for a_0(z), C(Theta), etc.
@@ -13,28 +16,36 @@ this script is purely a presentation layer that calls into:
     lensing         (Module 5) for M_dyn/M_b framework + ΛCDM, LSTAR_HALO_TABLE
     jwst_speedup    (Module 6) for the anchored E_eff helper (not used here)
 
-Figures generated (paper sections in parentheses):
+Supplementary figures generated (anchored to the paper section whose
+content each figure visualizes):
 
-    Figure 1 (§3.2)  a_0(z)/a_0(0) = E(z)/E(0) from z=0 to z=15, log-y.
-    Figure 2 (§3.1)  BTFR loci log10(M_b) vs log10(v_flat) at z = 0, 1, 2,
-                     v_flat = 30..400 km/s, slope-4 lines anchored to
-                     A_BTFR(0) = 62.78 M_sun/(km/s)^4.
-    Figure 3 (§3.2)  L* archetype rotation curve at z = 0 and z = 2,
-                     simple-MOND mu(x)=x/(1+x), point-mass g_N = G M_b / r^2,
-                     plotted for r >= R_d (= 2.5 kpc).
-    Figure 4 (§3.2)  r_M(z) for the four §3.2 archetypes, z = 0..5.
-    Figure 5 (§3.3)  L* M_dyn(R)/M_b for R = 10..500 kpc at z = 0, 1, 2;
-                     framework solid, ΛCDM (Appendix B halo table) dashed.
+    Figure 1 (§3 / Table 1)   a_0(z)/a_0(0) = E(z)/E(0) from z=0 to z=15, log-y.
+    Figure 2 (§3.1 / Table 2) BTFR loci log10(M_b) vs log10(v_flat) at
+                              z = 0, 1, 2, v_flat = 30..400 km/s, slope-4
+                              lines anchored to A_BTFR(0) = 62.78
+                              M_sun/(km/s)^4.
+    Figure 3 (§3.2 / Table 3) L* archetype rotation curve at z = 0 and
+                              z = 2, simple-MOND mu(x)=x/(1+x),
+                              point-mass g_N = G M_b / r^2, plotted for
+                              r >= R_d (= 2.5 kpc).
+    Figure 4 (§3.2 / Table 3) r_M(z) for the four §3.2 archetypes, z = 0..5.
+    Figure 5 (§3.3 + App B / Table 4) L* M_dyn(R)/M_b for R = 10..500 kpc
+                              at z = 0, 1, 2; framework solid, ΛCDM
+                              (Appendix B halo table) dashed.
 
 Each figure is saved to ../figures/figureN.{pdf,png}.
 
 Each plot carries an in-script assertion against a paper-quoted value:
-    Figure 1:  E(2)/E(0) = 3.033  (paper Table 1)
-    Figure 2:  z=2 line passes through (log10(176)+0.32/4, log10(6e10))
-               equivalently, log10(A_BTFR(2)) = log10(62.78/E(2)) = 1.316.
-    Figure 3:  L* z=0 plateau -> 176 km/s; z=2 plateau -> 232 km/s.
-    Figure 4:  L* r_M(0) = 8.35 kpc, r_M(2) = 4.79 kpc.
-    Figure 5:  L* z=0 R=100 kpc framework value = 11.98 (paper §3.3).
+    Figure 1:  E(2)/E(0) = 3.033  (paper Table 1, §3)
+    Figure 2:  z=2 line passes through (log10(176)+0.32/4, log10(6e10));
+               equivalently, log10(A_BTFR(2)) = log10(62.78/E(2)) = 1.316
+               (paper §3.1 / Table 2).
+    Figure 3:  L* z=0 plateau -> 176 km/s; z=2 plateau -> 232 km/s
+               (paper §3.2 / Table 3).
+    Figure 4:  L* r_M(0) = 8.35 kpc, r_M(2) = 4.79 kpc
+               (paper §3.2 / Table 3).
+    Figure 5:  L* z=0 R=100 kpc framework value = 11.98 (paper §3.3 /
+               Table 4).
 
 Run from anywhere; output paths are resolved relative to the script's
 parent directory.
@@ -129,7 +140,7 @@ def _apply_style() -> None:
 # ---------------------------------------------------------------------------
 
 def figure1() -> Tuple[str, str, dict]:
-    """Figure 1 (§3.2): a_0(z)/a_0(0) vs z, log-uniform y axis.
+    """Figure 1 (§3 / Table 1): a_0(z)/a_0(0) vs z, log-uniform y axis.
 
     Under the anchored convention a_0(z) = a_0_SPARC * E(z)/E(0), this is
     identical to E_eff(z). The paper recommends a log-uniform vertical
@@ -549,7 +560,7 @@ def main() -> None:
     print("=" * 70)
 
     builders = [
-        ("Figure 1 (§3.2 a_0(z)/a_0(0))",   figure1),
+        ("Figure 1 (§3 a_0(z)/a_0(0))",     figure1),
         ("Figure 2 (§3.1 BTFR loci)",       figure2),
         ("Figure 3 (§3.2 L* rotation curve)", figure3),
         ("Figure 4 (§3.2 r_M vs z)",        figure4),

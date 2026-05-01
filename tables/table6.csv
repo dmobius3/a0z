@@ -1,7 +1,7 @@
 Regime,Constraint,Framework status
 Local (z = 0),"SPARC, THINGS",Consistent by construction (§2 calibration)
-Intermediate-z BTFR,Übler 2017 [9],Live tension on trend shape; forward-model analysis confirms not a velocity-correction artifact
-Intermediate-z rotation curves,Genzel 2017 [10],Qualitatively consistent; not a sharp quantitative test
-Galaxy clusters,Pointecouteau-Silk 2005 [12],Inherited problem unaddressed by epoch-dependent a_0; not worsened by the framework
+Intermediate-z BTFR,Übler 2017 [10],Live tension on trend shape; forward-model analysis confirms not a velocity-correction artifact
+Intermediate-z rotation curves,Genzel 2017 [22],Qualitatively consistent; not a sharp quantitative test
+Galaxy clusters,Pointecouteau-Silk 2005 [14],Inherited problem unaddressed by epoch-dependent a_0; not worsened by the framework
 CMB (z ~ 1090),Naive over-application,Resolved structurally by the §2 selection rule; minimal-leakage Planck bound ε ≲ 1e-5 confirms consistency with the framework's structural ε = 0 prediction; rigorous derivation open
 Strong-lens time delays,"TDCOSMO, H0LiCOW",Below current sensitivity; consistent at present
