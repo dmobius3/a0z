@@ -2,13 +2,13 @@
 lensing.py
 ==========
 
-Galaxy-galaxy weak lensing predictions across cosmic time (paper §6).
+Galaxy-galaxy weak lensing predictions across cosmic time (paper §3.3).
 
-Framework prediction (§6.2, eq. 6.3):
+Framework prediction (§3.3, eq. 6.3):
 
     M_dyn(R, z) / M_b = (R / r_M(0)) * sqrt( E(z)/E(0) ),
 
-derived by combining the Newtonian inversion (§6.1, eq. 6.1)
+derived by combining the Newtonian inversion (§3.3, eq. 6.1)
 
     M_dyn(R) = v_flat^2 R / G
 
@@ -21,10 +21,10 @@ and the framework's anchored a_0(z) = a_0(0) * E(z)/E(0) from §3.
 Conventions inherited from Modules 3 and 4:
   - Anchored a_0(z), so that a_0(0) = a_0_SPARC = 1.20e-10 m/s^2 exactly.
     Equivalently, r_M(0) and v_flat(0) reduce to the SPARC-calibrated
-    archetype values from §5; the lensing fractional shift is
+    archetype values from §3.2; the lensing fractional shift is
     sqrt( E(z)/E(0) ) under btfr._E_eff.
 
-LambdaCDM comparison (Appendix B, also §6.2):
+LambdaCDM comparison (Appendix B, also §3.3):
   Reference (M_halo, c) values for the L* archetype:
 
       z        M_halo [M_sun]    c
@@ -50,7 +50,7 @@ LambdaCDM comparison (Appendix B, also §6.2):
   Module 1 H_0 (in km/s/Mpc) for full self-consistency. Appendix B quotes
   rho_crit(0) = 8.55e-27 kg/m^3 alongside H_0 = 67.4 km/s/Mpc; the
   computed value is 8.533e-27 kg/m^3, a 0.2% difference that is well
-  below the §6 discriminator scale and shifts the Lambda-CDM ratios at
+  below the §3.3 discriminator scale and shifts the Lambda-CDM ratios at
   the third decimal only.
 
   The un-normalized cosmology.E(z) is used for the LambdaCDM machinery,
@@ -58,19 +58,19 @@ LambdaCDM comparison (Appendix B, also §6.2):
   use the raw Friedmann E(z), while the framework's a_0(z) and the
   sqrt(E(z)) lensing factor use the anchored E(z)/E(0).
 
-§6 + Appendix B paper claims this script verifies:
-  - §6.2 sqrt(E(z)) table:  1.150 / 1.338 / 1.741 at z = 0.5 / 1 / 2
+§3.3 + Appendix B paper claims this script verifies:
+  - §3.3 sqrt(E(z)) table:  1.150 / 1.338 / 1.741 at z = 0.5 / 1 / 2
     and percent excesses 15.0% / 33.8% / 74.1%.
-  - §6.2 prose: LambdaCDM L* M_dyn/M_b at R = 100 kpc =
+  - §3.3 prose: LambdaCDM L* M_dyn/M_b at R = 100 kpc =
     14.0 / 13.6 / 13.8 at z = 0 / 1 / 2.
-  - §6.2 prose: framework L* M_dyn/M_b at R = 100 kpc =
+  - §3.3 prose: framework L* M_dyn/M_b at R = 100 kpc =
     11.98 / 16.03 / 20.86 at z = 0 / 1 / 2.
-  - §6.2 prose: framework-vs-LambdaCDM factor 1.52 at z = 2.
-  - §6.3 Table 4: framework L* predictions at R = 30 / 100 / 300 kpc and
+  - §3.3 prose: framework-vs-LambdaCDM factor 1.52 at z = 2.
+  - §3.3 Table 4: framework L* predictions at R = 30 / 100 / 300 kpc and
     z = 0 / 0.5 / 1 / 2 / 5; values within each row scale as sqrt(E(z)).
-  - §6.3 prose: 92% inferred dark-mass fraction at z = 0; 95% at z = 2,
+  - §3.3 prose: 92% inferred dark-mass fraction at z = 0; 95% at z = 2,
     using R = 100 kpc framework values 11.98 and 20.86.
-  - §6.4 Figure 5: vertical offset between curves equals
+  - §3.3 Figure 5: vertical offset between curves equals
     log10(sqrt(E(z))) at each redshift.
 
 Imports:
@@ -115,7 +115,7 @@ def rho_crit_z_si(z, cosmo: Cosmology = PLANCK18) -> float:
 
 
 # ---------------------------------------------------------------------------
-# §6.1 Newtonian-inversion proxy and §6.2 framework prediction (eq. 6.3)
+# §3.3 Newtonian-inversion proxy and §3.3 framework prediction (eq. 6.3)
 # ---------------------------------------------------------------------------
 
 def M_dyn_over_Mb_framework(R_kpc: float, z: float, M_b_solar: float,
@@ -132,7 +132,7 @@ def M_dyn_over_Mb_framework(R_kpc: float, z: float, M_b_solar: float,
 
 
 def fractional_lensing_enhancement(z, cosmo: Cosmology = PLANCK18) -> float:
-    """sqrt( E(z)/E(0) ): the §6.2 universal lensing enhancement factor."""
+    """sqrt( E(z)/E(0) ): the §3.3 universal lensing enhancement factor."""
     return float(np.sqrt(_E_eff(z, cosmo=cosmo)))
 
 
@@ -189,7 +189,7 @@ def M_dyn_over_Mb_LambdaCDM(R_kpc: float, z: float,
 # Archetype baryonic masses and Appendix B (M_halo, c) for the L* archetype
 # ---------------------------------------------------------------------------
 
-# §6.2 / Table 4 / Appendix B: L* anchor.
+# §3.3 / Table 4 / Appendix B: L* anchor.
 M_B_LSTAR = 6.0e10  # M_sun
 
 # Appendix B table: Moster-style SHMR + Duffy-style concentration at L*.
@@ -222,28 +222,28 @@ def main():
             all_match = False
             mismatches.append((label, paper_value, computed_value))
 
-    print("§6.2 universal lensing enhancement sqrt(E(z)):")
+    print("§3.3 universal lensing enhancement sqrt(E(z)):")
     sqE_targets = {0.5: 1.150, 1.0: 1.338, 2.0: 1.741}
     for z, target in sqE_targets.items():
         val = fractional_lensing_enhancement(z)
         check(f"sqrt(E(z)) at z={z}", target, val, 3)
 
     print()
-    print("§6.2 percent excesses in M_dyn/M_b (== 100*(sqrt(E(z))-1)):")
+    print("§3.3 percent excesses in M_dyn/M_b (== 100*(sqrt(E(z))-1)):")
     pct_targets = {0.5: 15.0, 1.0: 33.8, 2.0: 74.1}
     for z, target in pct_targets.items():
         val = (fractional_lensing_enhancement(z) - 1.0) * 100.0
         check(f"% excess at z={z}", target, val, 1)
 
     print()
-    print("§6.2 / §6.3 framework L* M_dyn/M_b at R = 100 kpc:")
+    print("§3.3 / §3.3 framework L* M_dyn/M_b at R = 100 kpc:")
     framework_R100_targets = {0.0: 11.98, 1.0: 16.03, 2.0: 20.86}
     for z, target in framework_R100_targets.items():
         val = M_dyn_over_Mb_framework(100.0, z, M_B_LSTAR)
         check(f"framework L* @ R=100 kpc, z={z}", target, val, 2)
 
     print()
-    print("§6.2 LambdaCDM L* M_dyn/M_b at R = 100 kpc (Appendix B):")
+    print("§3.3 LambdaCDM L* M_dyn/M_b at R = 100 kpc (Appendix B):")
     lcdm_R100_targets = {0.0: 14.0, 1.0: 13.6, 2.0: 13.8}
     for z, target in lcdm_R100_targets.items():
         M_h, c = LSTAR_HALO_TABLE[z]
@@ -251,14 +251,14 @@ def main():
         check(f"LambdaCDM L* @ R=100 kpc, z={z}", target, val, 1)
 
     print()
-    print("§6.2 framework-vs-LambdaCDM factor at z = 2 (R = 100 kpc):")
+    print("§3.3 framework-vs-LambdaCDM factor at z = 2 (R = 100 kpc):")
     M_h, c = LSTAR_HALO_TABLE[2.0]
     fw2 = M_dyn_over_Mb_framework(100.0, 2.0, M_B_LSTAR)
     lc2 = M_dyn_over_Mb_LambdaCDM(100.0, 2.0, M_B_LSTAR, M_h, c)
     check("framework / LambdaCDM at z=2", 1.52, fw2 / lc2, 2)
 
     print()
-    print("§6.3 Table 4 (framework L* archetype, R = 30 / 100 / 300 kpc):")
+    print("§3.3 Table 4 (framework L* archetype, R = 30 / 100 / 300 kpc):")
     paper_table4 = {
         # (R_kpc, z): paper value at 2 dp
         (30,  0.0): 3.59,  (30,  0.5): 4.13,  (30,  1.0): 4.81,
@@ -283,7 +283,7 @@ def main():
             check(f"Table4 R={R} kpc, z={z}", target, val, 2)
 
     print()
-    print("§6.3 inferred dark-mass fraction at z = 0 and z = 2 "
+    print("§3.3 inferred dark-mass fraction at z = 0 and z = 2 "
           "(R = 100 kpc, L*):")
     fw0 = M_dyn_over_Mb_framework(100.0, 0.0, M_B_LSTAR)
     fw2 = M_dyn_over_Mb_framework(100.0, 2.0, M_B_LSTAR)
@@ -293,7 +293,7 @@ def main():
     check("dark-mass fraction at z=2 (paper: 95%)", 95, dark_pct_2, 0)
 
     print()
-    print("§6.4 Figure 5 vertical offset = log10(sqrt(E(z))):")
+    print("§3.3 Figure 5 vertical offset = log10(sqrt(E(z))):")
     for z, sqE_target in [(0.0, 1.0), (1.0, 1.338), (2.0, 1.741)]:
         offset = np.log10(fractional_lensing_enhancement(z))
         target_offset = round(np.log10(sqE_target), 4)
@@ -307,7 +307,7 @@ def main():
     print()
     print("=" * 70)
     if all_match:
-        print("ALL §6 + APPENDIX B NUMERICAL CLAIMS MATCH PAPER EXACTLY "
+        print("ALL §3.3 + APPENDIX B NUMERICAL CLAIMS MATCH PAPER EXACTLY "
               "(at displayed precision).")
     else:
         print(f"DISAGREEMENTS FOUND ({len(mismatches)}):")

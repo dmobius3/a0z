@@ -3,20 +3,20 @@ cmb_leakage.py
 ==============
 
 Empirical bound on residual edge-mode leakage into cosmological perturbations
-at recombination (paper §7.5).
+at recombination (paper §4.3).
 
-Structural argument (§7.5)
+Structural argument (§4.3)
 --------------------------
-The framework's selection rule (§2.1) assigns a_0 to the edge-mode sector
+The framework's selection rule (§2) assigns a_0 to the edge-mode sector
 (n = 1, evolves through Omega_H(z)) and cosmological perturbations to the
 space-mode sector (n = 3, governed by Omega_Lambda, no a_0(z) modification).
 Under that assignment the framework's CMB prediction coincides with LambdaCDM's
 and the structural leakage parameter is exactly epsilon = 0.
 
-The §7.5 leakage bound asks how large any residual coupling could be without
+The §4.3 leakage bound asks how large any residual coupling could be without
 violating Planck's first-peak amplitude precision.
 
-Leakage ansatz (paper eq. in §7.5)
+Leakage ansatz (paper eq. in §4.3)
 ----------------------------------
     g_eff(R, z) = g_N(R, z) + epsilon * sqrt(g_N(R, z) * a_0(z)).
 
@@ -32,14 +32,14 @@ Inverting:
 The most-constraining bound comes from the scale with the largest
 sqrt(a_0/g_N), i.e. the smallest g_N — the sub-horizon BAO scale.
 
-Paper inputs (§7.5)
+Paper inputs (§4.3)
 -------------------
 At z = 1090 (recombination):
   - a_0(z=1090) ~ 2.79e-6 m/s^2  (anchored a_0(z) = a_0_SPARC * E(z)/E(0))
   - sound-horizon perturbation:  R ~ 0.13 Mpc physical, g_N ~ 4.0e-11 m/s^2
   - sub-horizon BAO scale:       R ~ 0.05 Mpc physical, g_N ~ 1.5e-11 m/s^2
 
-Planck first-peak amplitude precision (§7.5):
+Planck first-peak amplitude precision (§4.3):
   - literal value      = 39 / 5733  ~  0.68%
   - conservative value = 0.5%   (the README headline tolerance)
 
@@ -47,7 +47,7 @@ Verification target (per scripts/README.md)
 -------------------------------------------
   CMB leakage bound: epsilon  <~  1.2e-5 at 0.5% Planck tolerance.
 
-In-paper §7.5 also quotes:
+In-paper §4.3 also quotes:
   - a_0(z=1090) ~ 2.79e-6 m/s^2
   - a_0(z=1090) / a_0(0)  ~ 23,000
   - sqrt(a_0/g_N) at sound-horizon scale = 264
@@ -63,12 +63,12 @@ Imports
 Notes on convention
 -------------------
 The paper uses the anchored convention a_0(z) = a_0_SPARC * E(z)/E(0)
-throughout (§3.1, §4). The framework's structural form a_0(z) = a_P * C(13/120)
-* N_H(z) (§2.2) gives a_0(z=0) close to but slightly above the SPARC value;
-the §§3-7 numerical predictions all use the SPARC-anchored form so that the
+throughout (§3.1, §3.1). The framework's structural form a_0(z) = a_P * C(13/120)
+* N_H(z) (eq. 2.2) gives a_0(z=0) close to but slightly above the SPARC value;
+the §§3-5 numerical predictions all use the SPARC-anchored form so that the
 local calibration is the SPARC measurement. We follow the same convention
 here, giving a_0(z=1090) = 2.79e-6 m/s^2 to three significant figures, the
-value §7.5 reports.
+value §4.3 reports.
 """
 
 from __future__ import annotations
@@ -83,20 +83,20 @@ from framework import A0_SPARC_LOCAL
 
 
 # ---------------------------------------------------------------------------
-# Inputs (paper §7.5 narrative numbers)
+# Inputs (paper §4.3 narrative numbers)
 # ---------------------------------------------------------------------------
 
-Z_RECOMB = 1090.0  # redshift of recombination used by §7.5
+Z_RECOMB = 1090.0  # redshift of recombination used by §4.3
 
 # Newtonian gravitational acceleration of cosmological perturbations at the
-# two scales §7.5 evaluates the bound on. SI units (m/s^2). These are the
+# two scales §4.3 evaluates the bound on. SI units (m/s^2). These are the
 # narrative values the paper text quotes; they enter the bound as ratios
 # inside sqrt(a_0/g_N).
 G_N_SOUND_HORIZON = 4.0e-11    # m/s^2   (R ~ 0.13 Mpc physical, sound horizon)
 G_N_SUBHORIZON_BAO = 1.5e-11   # m/s^2   (R ~ 0.05 Mpc physical, sub-horizon BAO)
 
-# Planck first-peak amplitude precision (§7.5).
-# The "literal" value is the ratio §7.5 spells out: 39 / 5733.
+# Planck first-peak amplitude precision (§4.3).
+# The "literal" value is the ratio §4.3 spells out: 39 / 5733.
 # The "conservative" value is the rounded reading the README headline target
 # uses (0.5%).
 PLANCK_FIRST_PEAK_LITERAL_NUM = 39.0
@@ -134,21 +134,21 @@ def a0_ratio_to_local(
 
 
 # ---------------------------------------------------------------------------
-# Leakage geometry: sqrt(a_0(z) / g_N) at the two §7.5 scales
+# Leakage geometry: sqrt(a_0(z) / g_N) at the two §4.3 scales
 # ---------------------------------------------------------------------------
 
 def sqrt_a0_over_gN(a0: float, gN: float) -> float:
-    """sqrt(a_0(z) / g_N), the dimensionless prefactor in the §7.5 bound."""
+    """sqrt(a_0(z) / g_N), the dimensionless prefactor in the §4.3 bound."""
     return float(np.sqrt(a0 / gN))
 
 
 # ---------------------------------------------------------------------------
-# §7.5 leakage bound
+# §4.3 leakage bound
 # ---------------------------------------------------------------------------
 
 @dataclass(frozen=True)
 class LeakageBound:
-    """Container for the §7.5 leakage-bound results at one tolerance."""
+    """Container for the §4.3 leakage-bound results at one tolerance."""
     tolerance: float            # fractional first-peak amplitude precision
     epsilon_sound_horizon: float
     epsilon_subhorizon_bao: float
@@ -166,7 +166,7 @@ def leakage_bound(
     g_N_bao: float = G_N_SUBHORIZON_BAO,
 ) -> LeakageBound:
     """
-    Invert the §7.5 ansatz at the given fractional tolerance.
+    Invert the §4.3 ansatz at the given fractional tolerance.
 
         epsilon  <~  tolerance / sqrt(a_0(z=1090) / g_N).
     """
@@ -180,7 +180,7 @@ def leakage_bound(
 
 
 # ---------------------------------------------------------------------------
-# Self-check / verification against §7.5 quoted numbers
+# Self-check / verification against §4.3 quoted numbers
 # ---------------------------------------------------------------------------
 
 @dataclass(frozen=True)
@@ -201,7 +201,7 @@ def _format_two_sig(x: float) -> str:
 
 
 def run_verification() -> Tuple[list, bool]:
-    """Reproduce every §7.5 numerical claim and check it against the paper."""
+    """Reproduce every §4.3 numerical claim and check it against the paper."""
 
     # 1. a_0 at recombination under the anchored convention.
     a0_rec = a0_at_recombination()
@@ -301,7 +301,7 @@ def run_verification() -> Tuple[list, bool]:
 
 
 def main():
-    print("Module 8: cmb_leakage.py  (paper §7.5 leakage bound)")
+    print("Module 8: cmb_leakage.py  (paper §4.3 leakage bound)")
     print("=" * 72)
     print()
 
@@ -313,7 +313,7 @@ def main():
     print(f"a_0(z=1090) / a_0(z=0)            = {a0_ratio_to_local():.1f}")
     print()
 
-    print("Per-scale leakage geometry (§7.5):")
+    print("Per-scale leakage geometry (§4.3):")
     print(f"  sound-horizon   g_N = {G_N_SOUND_HORIZON:.2e} m/s^2"
           f"   sqrt(a_0/g_N) = {sqrt_a0_over_gN(a0_rec, G_N_SOUND_HORIZON):.2f}")
     print(f"  sub-horizon BAO g_N = {G_N_SUBHORIZON_BAO:.2e} m/s^2"
@@ -341,7 +341,7 @@ def main():
           f"   <- most constraining")
     print()
 
-    print("Verification against §7.5 numerical claims:")
+    print("Verification against §4.3 numerical claims:")
     print("-" * 72)
     rows, all_match = run_verification()
     for r in rows:
@@ -350,11 +350,11 @@ def main():
         print(f"           paper    : {r.paper}")
         print(f"           computed : {r.computed}")
     print("-" * 72)
-    print(f"All §7.5 numerical claims match: {all_match}")
+    print(f"All §4.3 numerical claims match: {all_match}")
     print()
 
     print("Framework structural prediction:  epsilon = 0  exactly,")
-    print("under the §2.1 selection rule's n = 3 space-mode assignment for")
+    print("under the §2 selection rule's n = 3 space-mode assignment for")
     print("cosmological perturbations.  The empirical bound above shows the")
     print("structural prediction satisfies Planck consistency by every margin")
     print("Planck currently provides.")

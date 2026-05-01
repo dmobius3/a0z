@@ -2,7 +2,7 @@
 btfr.py
 =======
 
-Baryonic Tully-Fisher relation across cosmic time (paper §4).
+Baryonic Tully-Fisher relation across cosmic time (paper §3.1).
 
 Deep-MOND BTFR (paper eq. 4.1):
 
@@ -18,13 +18,13 @@ The local theoretical normalization is
 
     A_BTFR(0) = 1 / (G * a_0(0)),
 
-reported in §4 in solar-mass / (km/s)^4 units (paper Table 2 caption).
+reported in §3.1 in solar-mass / (km/s)^4 units (paper Table 2 caption).
 
 Imports:
     - cosmology: PLANCK18 -> E(z)
     - framework: A0_SPARC_LOCAL = 1.20e-10 m/s^2, G_NEWTON = 6.67430e-11
 
-Verification targets in §4:
+Verification targets in §3.1:
     - A_BTFR(0) = 62.78  M_sun / (km/s)^4
     - Table 2 columns (E, A_BTFR, A/A(0), M_b/M_b(0), v_flat/v_flat(0))
       at z = 0, 0.5, 1, 2, 5, 10
@@ -76,7 +76,7 @@ def A_BTFR_solar_per_kms4(a0: float) -> float:
 
 
 # ---------------------------------------------------------------------------
-# §4 evolution relations (4.3)-(4.5)
+# §3.1 evolution relations (4.3)-(4.5)
 # ---------------------------------------------------------------------------
 
 def _E_eff(z, cosmo: Cosmology = PLANCK18) -> float:
@@ -148,7 +148,7 @@ def table2_rows(redshifts: Iterable[float] = (0.0, 0.5, 1.0, 2.0, 5.0, 10.0),
 
 
 # ---------------------------------------------------------------------------
-# L* worked example (§4.2)
+# L* worked example (§3.1)
 # ---------------------------------------------------------------------------
 
 def Lstar_v_flat_at_z(M_b_solar: float, z: float,
@@ -185,7 +185,7 @@ def main():
     header = f"{'z':>5} {'E(z)':>8} {'A_BTFR':>8} {'A/A(0)':>8} {'M_b/M_b(0)':>11} {'v/v(0)':>8}"
     print(header)
     # Paper Table 2 values under the anchored convention (a_0(0) = a_0_SPARC).
-    # Five cells differ from the original §4 Table 2 (pre-reconciliation):
+    # Five cells differ from the original §3.1 Table 2 (pre-reconciliation):
     #   z=1.0 E (1.7906 -> 1.7907), z=1.0 Mb (0.559 -> 0.558),
     #   z=2.0 A/A(0) (0.3297 -> 0.3298), z=5.0 Mb (0.120 -> 0.121),
     #   z=5.0 v (1.696 -> 1.697).
@@ -249,13 +249,13 @@ def main():
 
     print()
 
-    # ----- §4 README/abstract verification: 1/E(2) = 0.330 -----
+    # ----- §3.1 README/abstract verification: 1/E(2) = 0.330 -----
     target = 0.330
     val = A_ratio(2.0)
     print(f"BTFR shift at z = 2:  1/E(z) = {val:.6f}  (paper: {target})")
     print(f"  Rounded to 3 dp:    {round(val, 3)}   match: {round(val, 3) == target}")
 
-    # ----- §4.2 percent-level claims at z = 1 and z = 2 -----
+    # ----- §3.1 percent-level claims at z = 1 and z = 2 -----
     # "At z = 2 ... rotates 32% faster" -> v/v(0) - 1 = 0.32 (rounded to 2 dp)
     v2 = v_ratio_fixed_Mb(2.0)
     pct_v2 = (v2 - 1.0) * 100.0
@@ -283,7 +283,7 @@ def main():
             mismatches.append((1.0, label, paper_int, val_, 0))
             print(f"  MISMATCH on {label}: computed {val_:.4f}, paper {paper_int}")
 
-    # ----- §4.2 L* worked example -----
+    # ----- §3.1 L* worked example -----
     M_b_Lstar = 6.0e10  # solar
     v0, v2 = Lstar_v_flat_at_z(M_b_Lstar, 2.0)
     print()
@@ -304,7 +304,7 @@ def main():
     print()
     print("=" * 60)
     if all_match:
-        print("ALL §4 NUMERICAL CLAIMS MATCH PAPER EXACTLY (at displayed precision).")
+        print("ALL §3.1 NUMERICAL CLAIMS MATCH PAPER EXACTLY (at displayed precision).")
     else:
         print("DISAGREEMENTS FOUND:")
         for z, lab, paper, comp, dp in mismatches:

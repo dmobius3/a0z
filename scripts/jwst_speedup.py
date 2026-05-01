@@ -3,16 +3,16 @@ jwst_speedup.py
 ===============
 
 JWST early-galaxy free-fall collapse-time speedup applied to the Labbé
-candidate sample (paper §7.7).
+candidate sample (paper §3.4).
 
-Setup (paper §7.7)
+Setup (paper §3.4)
 ------------------
 
 Under the framework's evolving acceleration scale a_0(z) = a_0(0) * E(z)
 (eq. 3.1, anchored so E(0) = 1), the deep-MOND effective gravitational
 acceleration at fixed Newtonian source
 
-    g_eff = sqrt( g_N * a_0(z) )                                (§7.7)
+    g_eff = sqrt( g_N * a_0(z) )                                (§3.4)
 
 scales as sqrt(E(z)). The corresponding free-fall collapse time
 
@@ -22,11 +22,11 @@ shortens as E(z)^(-1/4). Equivalently, the required star-formation
 efficiency to assemble a given M_star at observed z is reduced from the
 LambdaCDM value by
 
-    epsilon_SF^MIT(z) = epsilon_SF^LCDM(z) / E(z)^(1/4).        (§7.7)
+    epsilon_SF^MIT(z) = epsilon_SF^LCDM(z) / E(z)^(1/4).        (§3.4)
 
 The framework speedup factor on collapse time is therefore E(z)^(1/4),
-identical (by exponent identity) to the §5 v_flat enhancement and to the
-§4 BTFR velocity ratio v(z)/v(0). To stay consistent with Modules 3-5,
+identical (by exponent identity) to the §3.2 v_flat enhancement and to the
+§3.1 BTFR velocity ratio v(z)/v(0). To stay consistent with Modules 3-5,
 this script evaluates the *anchored* ratio E(z)/E(0), so that
 a_0(0) = a_0_SPARC = 1.20e-10 m/s^2 exactly. At z ~ 7-9 the un-normalized
 and anchored E differ at the 5th significant figure; both round to the
@@ -51,12 +51,12 @@ table (the `sample_revision3_2207.12446.ecsv` file accompanying the paper)
 at the catalog's full numerical precision; see
 `../data/labbe_2023_candidates.csv` for the local copy.
 
-Verification target (§7.7)
+Verification target (§3.4)
 --------------------------
 
 The paper's quantitative claim is the speedup-factor range:
 
-    E(z)^(1/4) ≈ 1.92 – 2.06          (§7.7, line 631)
+    E(z)^(1/4) ≈ 1.92 – 2.06          (§3.4, line 631)
 
 evaluated across the six z_phot values, with a corresponding
 "approximately a factor of two" uniform reduction in epsilon_SF.
@@ -89,10 +89,10 @@ def E_eff(z, cosmo: Cosmology = PLANCK18) -> float:
 
 
 def speedup_factor(z, cosmo: Cosmology = PLANCK18) -> float:
-    """The §7.7 free-fall collapse-time speedup factor, E(z)^(1/4) under
+    """The §3.4 free-fall collapse-time speedup factor, E(z)^(1/4) under
     the anchored E(0) = 1 convention.
 
-    By the §7.7 derivation:
+    By the §3.4 derivation:
         t_ff(z) / t_ff(0) = E(z)^(-1/4)
         speedup(z) = t_ff(0) / t_ff(z) = E(z)^(+1/4).
     """
@@ -182,7 +182,7 @@ PAPER_RANGE_HIGH = 2.06
 
 
 def main():
-    print("§7.7 JWST early-galaxy collapse-time speedup")
+    print("§3.4 JWST early-galaxy collapse-time speedup")
     print("=" * 60)
     print()
     print("Per-candidate speedup factors E(z)^(1/4) under anchored E(0)=1:")
@@ -202,11 +202,11 @@ def main():
     print()
     print(f"Speedup range          : {s_min:.6f} -- {s_max:.6f}")
     print(f"  Rounded to 2 dp      : {round(s_min, 2)} -- {round(s_max, 2)}")
-    print(f"  Paper §7.7 claim     : {PAPER_RANGE_LOW} -- {PAPER_RANGE_HIGH}")
+    print(f"  Paper §3.4 claim     : {PAPER_RANGE_LOW} -- {PAPER_RANGE_HIGH}")
     print()
     print(f"Epsilon-reduction range: {eps_min:.6f} -- {eps_max:.6f}")
     print(f"  Mean reduction       : {sum(factors)/len(factors):.6f}")
-    print(f"  Paper §7.7 claim     : 'approximately a factor of two'")
+    print(f"  Paper §3.4 claim     : 'approximately a factor of two'")
     print()
 
     # ----- Pass / fail logic -----
@@ -235,7 +235,7 @@ def main():
     print()
     print("=" * 60)
     if ok_low and ok_high and ok_factor_two_each and ok_factor_two_mean:
-        print("ALL §7.7 NUMERICAL CLAIMS MATCH THE PAPER AT DISPLAYED PRECISION.")
+        print("ALL §3.4 NUMERICAL CLAIMS MATCH THE PAPER AT DISPLAYED PRECISION.")
     else:
         print("DISAGREEMENTS FOUND:")
         if not ok_low:

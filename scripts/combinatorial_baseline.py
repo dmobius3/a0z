@@ -3,20 +3,19 @@ combinatorial_baseline.py
 =========================
 
 Module 9 of the a0z analysis pipeline. Computes the combinatorial sparsity
-baseline against which the §2.5 well-pair match (a_0/(c H_0) recovered from
+baseline against which the §2 well-pair match (a_0/(c H_0) recovered from
 the (13/120, 34/120) Fibonacci-well pair) is calibrated.
 
-Paper claim (§2.5)
-------------------
-"Of the 7,021 unordered nonzero phase-position pairs (k_1, k_2)/120 with
-k_1, k_2 in {1, ..., 119}, only 24 produce a ratio C(k_1/120)/C(k_2/120)
-within 1% of the observed 0.1832 [post-reconciliation: 0.1833], a fraction
-of 0.342%. Modulo the reflection symmetry C(k) = C(120-k), these collapse
-to 6 unique phase-operator value pairs. Within the framework's selected
-Fibonacci-well subset {13, 21, 34, 55, 60}/120, exactly one of the ten
-possible unordered well-pairs matches: the framework's (13, 34). The match
-is therefore sparse on the full 120-domain (one in ~300 pairs) and unique
-within the topologically-selected Fibonacci-well structure (one in 10)."
+Paper claim (§2, App A.3)
+-------------------------
+"Of the 7,021 unordered distinct nonzero phase-position pairs on the
+120-domain, 24 reproduce the observed Milgrom ratio 0.1833 within 1% (a
+fraction of 0.34%); the reflection symmetry C(k) = C(120-k) collapses
+them to 6 unique phase-operator value-pairs. Among the framework's six
+Fibonacci-well pairs (drawn from F_7..F_10 = {13, 21, 34, 55}/120),
+(13, 34) is the unique match. The match is sparse on the full 120-domain
+(one in ~300 pairs) and unique within the topologically-selected
+Fibonacci-well structure (one in 6)."
 
 Conventions used here
 ---------------------
@@ -30,16 +29,18 @@ Conventions used here
   smaller-of-two (i.e. the one < 1) and test |r - 0.1833| / 0.1833 <= 0.01.
 - "Modulo reflection symmetry": C(k/120) = C((120-k)/120), so the canonical
   representative of k is min(k, 120-k). Two unordered pairs collapse if their
-  canonical-representative sets coincide.
-- Fibonacci-well subset: {13, 21, 34, 55, 60}/120, giving C(5, 2) = 10
-  unordered pairs.
-- Observed Milgrom ratio: 0.1833 (post §2 reconciliation; the paper text
-  printed 0.1832 prior to the reconciliation pass).
+  canonical-representative sets coincide. For a pair {a, b} with a + b != 120
+  the orbit has 4 members ({a, b}, {120-a, b}, {a, 120-b}, {120-a, 120-b}),
+  giving 24 / 4 = 6 unique value-pairs.
+- Fibonacci-well subset: {13, 21, 34, 55}/120 (F_7..F_10). F_11 = 89 collapses
+  to F_8 = 21 under reflection (App A.3). Four wells give C(4, 2) = 6
+  unordered well-pairs.
 
 Verification target (per scripts/README.md)
 -------------------------------------------
 "Combinatorial sparsity: 24 of 7,021 phase-position pairs match within 1%;
-1 of 10 within Fibonacci-well subset"
+6 unique phase-operator value-pairs after reflection collapse;
+1 of 6 within Fibonacci-well subset"
 
 Run
 ---
@@ -65,8 +66,8 @@ from framework import C_phase, DOMAIN_SIZE
 OBSERVED_RATIO = 0.1833           # a_0_obs / (c H_0_obs), post-reconciliation
 TOLERANCE_FRAC = 0.01             # "within 1%"
 
-FIBONACCI_WELLS = (13, 21, 34, 55, 60)
-FRAMEWORK_PAIR = (13, 34)         # the well pair matched by the framework
+FIBONACCI_WELLS = (13, 21, 34, 55)  # F_7..F_10; F_11 = 89 reflects to F_8 = 21
+FRAMEWORK_PAIR = (13, 34)           # the well pair matched by the framework
 
 
 # ---------------------------------------------------------------------------
@@ -132,7 +133,7 @@ def run_combinatorial(
     """
     Enumerate all unordered nonzero pairs on the N-domain, count the ones
     whose smaller-of-two phase-operator ratio lies within `tol` of `target`,
-    and report the §2.5 statistics.
+    and report the §2 statistics.
     """
 
     indices = list(range(1, N))                 # nonzero: exclude k = 0
@@ -158,7 +159,7 @@ def run_combinatorial(
 
 
 # ---------------------------------------------------------------------------
-# Verification against the §2.5 paper claims
+# Verification against the §2 paper claims
 # ---------------------------------------------------------------------------
 
 @dataclass(frozen=True)
@@ -170,7 +171,7 @@ class CheckRow:
 
 
 def run_verification() -> Tuple[List[CheckRow], bool]:
-    """Reproduce every §2.5 numerical claim and check it against the paper."""
+    """Reproduce every §2 numerical claim and check it against the paper."""
 
     res = run_combinatorial()
 
@@ -187,10 +188,10 @@ def run_verification() -> Tuple[List[CheckRow], bool]:
     # 4. Unique phase-operator value pairs modulo reflection k -> 120-k.
     refl_match = res.unique_under_reflection == 6
 
-    # 5. Fibonacci subset has 10 unordered pairs.
-    fib_total_match = res.fibonacci_total_pairs == 10
+    # 5. Fibonacci subset has 6 unordered pairs (4 wells, C(4, 2) = 6).
+    fib_total_match = res.fibonacci_total_pairs == 6
 
-    # 6. Exactly one of those ten pairs matches.
+    # 6. Exactly one of those six pairs matches.
     fib_one_match = res.fibonacci_matching_pairs == 1
 
     # 7. The single Fibonacci match is the framework's (13, 34).
@@ -230,7 +231,7 @@ def run_verification() -> Tuple[List[CheckRow], bool]:
         ),
         CheckRow(
             "Fibonacci-well subset unordered pairs",
-            "10",
+            "6",
             f"{res.fibonacci_total_pairs}",
             fib_total_match,
         ),
@@ -263,10 +264,10 @@ def print_table(rows: List[CheckRow]) -> None:
     paper_w = max(len(r.paper) for r in rows)
     comp_w = max(len(r.computed) for r in rows)
     label_w = max(label_w, len("Quantity"))
-    paper_w = max(paper_w, len("Paper §2.5"))
+    paper_w = max(paper_w, len("Paper §2"))
     comp_w = max(comp_w, len("Computed"))
 
-    print(f"{'Quantity':<{label_w}}  {'Paper §2.5':<{paper_w}}  {'Computed':<{comp_w}}  Match")
+    print(f"{'Quantity':<{label_w}}  {'Paper §2':<{paper_w}}  {'Computed':<{comp_w}}  Match")
     print("-" * (label_w + paper_w + comp_w + 14))
     for r in rows:
         ok = "OK" if r.matches else "FAIL"

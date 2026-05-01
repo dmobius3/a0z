@@ -2,7 +2,7 @@
 rotation_curves.py
 ==================
 
-Rotation-curve predictions across cosmic time (paper §5).
+Rotation-curve predictions across cosmic time (paper §3.2).
 
 Key relations:
 
@@ -18,7 +18,7 @@ The asymptotic flat velocity is the BTFR statement (4.1):
 Convention (carried over from Module 3 / btfr.py):
   a_0(z) is anchored so that a_0(z=0) equals the SPARC value exactly:
         a_0(z) = A0_SPARC_LOCAL * cosmo.E(z) / cosmo.E(0).
-  The §5 formulas inherit this anchoring through their a_0(z) factor;
+  The §3.2 formulas inherit this anchoring through their a_0(z) factor;
   in particular, r_M and v_flat at z=0 reduce to the SPARC-calibrated
   values and the fractional shifts reduce to powers of E(z)/E(0).
 
@@ -27,10 +27,10 @@ Imports:
   - framework: A0_SPARC_LOCAL = 1.20e-10 m/s^2, G_NEWTON = 6.67430e-11
   - btfr:      M_SUN_KG, KM_PER_M, _E_eff (anchored E(z)/E(0))
 
-§5 paper claims this script verifies:
+§3.2 paper claims this script verifies:
   - §5.1 fractional r_M shifts: 0.574 (z=2), 0.347 (z=5), 0.221 (z=10)
-  - §5.2 Table 3 archetypes (Dwarf / Sub-L* / L* / Giant) at z=0 and z=2
-  - §5.3 L* asymptotes 176 km/s (z=0), 232 km/s (z=2)
+  - §3.2 Table 3 archetypes (Dwarf / Sub-L* / L* / Giant) at z=0 and z=2
+  - §3.2 L* asymptotes 176 km/s (z=0), 232 km/s (z=2)
   - Caption shifts: r_M(2)/r_M(0) = 0.574, v_flat(2)/v_flat(0) = 1.320
 """
 
@@ -89,7 +89,7 @@ def r_M_ratio(z, cosmo: Cosmology = PLANCK18) -> float:
 
 
 # ---------------------------------------------------------------------------
-# §5 asymptotic flat velocity
+# §3.2 asymptotic flat velocity
 # ---------------------------------------------------------------------------
 
 def v_flat(M_b_solar: float, z: float = 0.0,
@@ -111,7 +111,7 @@ def v_flat_ratio(z, cosmo: Cosmology = PLANCK18) -> float:
 
 
 # ---------------------------------------------------------------------------
-# §5.2 Table 3 archetypes
+# §3.2 Table 3 archetypes
 # ---------------------------------------------------------------------------
 
 @dataclass(frozen=True)
@@ -189,16 +189,16 @@ def main():
     target_v_ratio = 1.320
     ok_v_ratio = v_ratio_2_rounded == target_v_ratio
     flag = "ok" if ok_v_ratio else "MISMATCH"
-    print(f"§5.2 caption: v_flat(2)/v_flat(0) = {v_ratio_2:.6f} "
+    print(f"§3.2 caption: v_flat(2)/v_flat(0) = {v_ratio_2:.6f} "
           f"-> {v_ratio_2_rounded:.3f}  (paper: {target_v_ratio:.3f})  [{flag}]")
     if not ok_v_ratio:
         all_match = False
-        mismatches.append(("§5.2 caption v_flat(2)/v_flat(0)",
+        mismatches.append(("§3.2 caption v_flat(2)/v_flat(0)",
                            target_v_ratio, v_ratio_2, 3))
     print()
 
-    # ----- §5.2 Table 3 archetypes -----
-    print("§5.2 Table 3 archetypes (paper precisions: r_M to 2 dp, v to 0 dp):")
+    # ----- §3.2 Table 3 archetypes -----
+    print("§3.2 Table 3 archetypes (paper precisions: r_M to 2 dp, v to 0 dp):")
     paper_table = {
         "Dwarf (DDO 154-like)":   (0.64,  0.37,  49,  64),
         "Sub-L* (NGC 2403-like)": (3.41,  1.96, 112, 148),
@@ -248,11 +248,11 @@ def main():
               f"{prM0:7.2f} {prM2:7.2f} {pv0:5d} {pv2:5d}")
     print()
 
-    # ----- §5.3 figure asymptotes (L*) -----
+    # ----- §3.2 figure asymptotes (L*) -----
     Lstar = next(a for a in ARCHETYPES if a.name.startswith("L*"))
     v0_L = v_flat(Lstar.M_b, 0.0)
     v2_L = v_flat(Lstar.M_b, 2.0)
-    print(f"§5.3 Figure 3 L* asymptotes:")
+    print(f"§3.2 Figure 3 L* asymptotes:")
     print(f"  v_flat(0) = {v0_L:.4f} km/s  (paper: 176)  "
           f"match: {int(round(v0_L)) == 176}")
     print(f"  v_flat(2) = {v2_L:.4f} km/s  (paper: 232)  "
@@ -261,7 +261,7 @@ def main():
     print()
     print("=" * 60)
     if all_match:
-        print("ALL §5 NUMERICAL CLAIMS MATCH PAPER EXACTLY (at displayed precision).")
+        print("ALL §3.2 NUMERICAL CLAIMS MATCH PAPER EXACTLY (at displayed precision).")
     else:
         print("DISAGREEMENTS FOUND:")
         for label, paper, comp, dp in mismatches:

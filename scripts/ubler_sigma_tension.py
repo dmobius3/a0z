@@ -1,17 +1,17 @@
-"""Übler+ 2017 KMOS3D BTFR σ-tension (paper §7.2).
+"""Übler+ 2017 KMOS3D BTFR σ-tension (paper §4.1).
 
 The framework predicts a strict monotonic decrease in the BTFR zero-point
 with redshift, Δb_MIT(z) = -log10(E(z)/E(0)) under (4.3). Übler+ 2017 [9]
 report fixed-slope zero-points at two redshift bins; their offsets relative
-to the local Lelli baseline are non-monotonic in z. The §7.2 σ-tension
+to the local Lelli baseline are non-monotonic in z. The §4.1 σ-tension
 table quantifies the disagreement under three error budgets.
 
 This module reproduces the σ-tension table analytically. It does NOT
 implement the four-bias-model Monte Carlo forward analysis sketched in
-§7.2 prose; that analysis remains future work and the corresponding paper
+§4.1 prose; that analysis remains future work and the corresponding paper
 text was softened in the revision to avoid quoting irreproducible numbers.
 
-Inputs (from §7.2 + Übler+ 2017 + Lelli+ 2016):
+Inputs (from §4.1 + Übler+ 2017 + Lelli+ 2016):
   - Δb_obs(z=0.9)  = -0.44 dex
   - Δb_obs(z=2.3)  = -0.27 dex
   - σ_stat(0.9)    =  0.04 dex   (Übler statistical error on the
@@ -41,7 +41,7 @@ from btfr import _E_eff
 
 UBLER_BINS: Dict[float, Tuple[float, float]] = {
     # z : (Δb_obs [dex], σ_stat [dex])
-    # Paper §7.2 displays Δb_obs(0.9) as -0.44 (2 dp); the underlying
+    # Paper §4.1 displays Δb_obs(0.9) as -0.44 (2 dp); the underlying
     # Übler+ 2017 value is -0.443, the only choice consistent with the
     # paper's quoted residual -0.216 dex and T(0.9) stat-only = -5.4σ.
     0.9: (-0.443, 0.04),
@@ -69,7 +69,7 @@ def joint_tension(t_low: float, t_high: float) -> float:
 
 
 def main():
-    print("Übler+ 2017 KMOS3D BTFR σ-tension (paper §7.2)\n")
+    print("Übler+ 2017 KMOS3D BTFR σ-tension (paper §4.1)\n")
 
     pred = {z: delta_b_MIT(z) for z in UBLER_BINS}
 
@@ -120,7 +120,7 @@ def main():
         print(f"  {label:<32s} {t_low:>+8.1f} {t_high:>+8.1f} {joint:>8.1f}")
     print()
 
-    # Verification (against paper §7.2 text + table)
+    # Verification (against paper §4.1 text + table)
     paper = {
         "A: stat only":                       (-5.4, +5.4, 7.6),
         "B: + Lelli (0.05 dex)":              (-3.4, +3.8, 5.1),
@@ -141,7 +141,7 @@ def main():
 
     print("=" * 70)
     if all_match:
-        print("ALL §7.2 σ-TENSION CLAIMS MATCH PAPER EXACTLY (at displayed precision).")
+        print("ALL §4.1 σ-TENSION CLAIMS MATCH PAPER EXACTLY (at displayed precision).")
     else:
         print("DISAGREEMENT — see rows above.")
 

@@ -19,11 +19,11 @@ Figures generated (paper sections in parentheses):
     Figure 2 (§4.3)  BTFR loci log10(M_b) vs log10(v_flat) at z = 0, 1, 2,
                      v_flat = 30..400 km/s, slope-4 lines anchored to
                      A_BTFR(0) = 62.78 M_sun/(km/s)^4.
-    Figure 3 (§5.3)  L* archetype rotation curve at z = 0 and z = 2,
+    Figure 3 (§3.2)  L* archetype rotation curve at z = 0 and z = 2,
                      simple-MOND mu(x)=x/(1+x), point-mass g_N = G M_b / r^2,
                      plotted for r >= R_d (= 2.5 kpc).
-    Figure 4 (§5.4)  r_M(z) for the four §5 archetypes, z = 0..5.
-    Figure 5 (§6.4)  L* M_dyn(R)/M_b for R = 10..500 kpc at z = 0, 1, 2;
+    Figure 4 (§3.2)  r_M(z) for the four §3.2 archetypes, z = 0..5.
+    Figure 5 (§3.3)  L* M_dyn(R)/M_b for R = 10..500 kpc at z = 0, 1, 2;
                      framework solid, ΛCDM (Appendix B halo table) dashed.
 
 Each figure is saved to ../figures/figureN.{pdf,png}.
@@ -34,7 +34,7 @@ Each plot carries an in-script assertion against a paper-quoted value:
                equivalently, log10(A_BTFR(2)) = log10(62.78/E(2)) = 1.316.
     Figure 3:  L* z=0 plateau -> 176 km/s; z=2 plateau -> 232 km/s.
     Figure 4:  L* r_M(0) = 8.35 kpc, r_M(2) = 4.79 kpc.
-    Figure 5:  L* z=0 R=100 kpc framework value = 11.98 (paper §6.3).
+    Figure 5:  L* z=0 R=100 kpc framework value = 11.98 (paper §3.3).
 
 Run from anywhere; output paths are resolved relative to the script's
 parent directory.
@@ -218,7 +218,7 @@ def figure2() -> Tuple[str, str, dict]:
 
     # ---- Assertion: at log10(v) = log10(176), z=2 line gives log10(M_b)
     # equal to log10(A_BTFR(0)/E(2)) + 4 log10(176). Compare against the
-    # §4.2 worked example (M_b = 6e10, v(2) ~= 232 km/s) by checking that
+    # §3.1 worked example (M_b = 6e10, v(2) ~= 232 km/s) by checking that
     # the z=2 line evaluated at v = 232 km/s gives log10(M_b) very close
     # to log10(6e10) = 10.7782. ----
     A2 = A0 * A_ratio(2.0)
@@ -267,7 +267,7 @@ def _v_circ_simple_mond(r_kpc: np.ndarray, M_b_solar: float, z: float) -> np.nda
 
 
 def figure3() -> Tuple[str, str, dict]:
-    """Figure 3 (§5.3): L* archetype rotation curve at z = 0 and z = 2.
+    """Figure 3 (§3.2): L* archetype rotation curve at z = 0 and z = 2.
 
     Per the paper caption: simple MOND mu(x) = x/(1+x) with closed form
     g_tot = (g_N + sqrt(g_N^2 + 4 g_N a_0(z)))/2 and point-mass
@@ -372,11 +372,11 @@ def figure3() -> Tuple[str, str, dict]:
 
 
 # ---------------------------------------------------------------------------
-# Figure 4: r_M(z) vs z for the four §5 archetypes
+# Figure 4: r_M(z) vs z for the four §3.2 archetypes
 # ---------------------------------------------------------------------------
 
 def figure4() -> Tuple[str, str, dict]:
-    """Figure 4 (§5.4): r_M(z) for the four §5 archetypes from z = 0 to 5.
+    """Figure 4 (§3.2): r_M(z) for the four §3.2 archetypes from z = 0 to 5.
 
     All four curves follow r_M(z) = r_M(0)/sqrt(E(z)/E(0)); they share
     the same fractional shape (mass-independent) and are vertically
@@ -410,7 +410,7 @@ def figure4() -> Tuple[str, str, dict]:
 
     pdf, png = _save(fig, "figure4")
 
-    # ---- Assertions: §5.2 Table 3 row for L* ----
+    # ---- Assertions: §3.2 Table 3 row for L* ----
     Lstar = next(a for a in ARCHETYPES if a.name.startswith("L*"))
     rM0_L = r_M(Lstar.M_b, 0.0)
     rM2_L = r_M(Lstar.M_b, 2.0)
@@ -446,7 +446,7 @@ def figure4() -> Tuple[str, str, dict]:
 # ---------------------------------------------------------------------------
 
 def figure5() -> Tuple[str, str, dict]:
-    """Figure 5 (§6.4): L* M_dyn(R)/M_b vs R for R = 10..500 kpc at
+    """Figure 5 (§3.3): L* M_dyn(R)/M_b vs R for R = 10..500 kpc at
     z = 0, 1, 2.
 
     Framework prediction: solid lines (eq. 6.3).
@@ -487,7 +487,7 @@ def figure5() -> Tuple[str, str, dict]:
 
     pdf, png = _save(fig, "figure5")
 
-    # ---- Assertions: paper §6.3 quoted values at R = 100 kpc, L* ----
+    # ---- Assertions: paper §3.3 quoted values at R = 100 kpc, L* ----
     fw_z0_R100 = M_dyn_over_Mb_framework(100.0, 0.0, M_B_LSTAR)
     fw_z1_R100 = M_dyn_over_Mb_framework(100.0, 1.0, M_B_LSTAR)
     fw_z2_R100 = M_dyn_over_Mb_framework(100.0, 2.0, M_B_LSTAR)
@@ -551,9 +551,9 @@ def main() -> None:
     builders = [
         ("Figure 1 (§3.2 a_0(z)/a_0(0))",   figure1),
         ("Figure 2 (§4.3 BTFR loci)",       figure2),
-        ("Figure 3 (§5.3 L* rotation curve)", figure3),
-        ("Figure 4 (§5.4 r_M vs z)",        figure4),
-        ("Figure 5 (§6.4 M_dyn/M_b vs R)",  figure5),
+        ("Figure 3 (§3.2 L* rotation curve)", figure3),
+        ("Figure 4 (§3.2 r_M vs z)",        figure4),
+        ("Figure 5 (§3.3 M_dyn/M_b vs R)",  figure5),
     ]
 
     results = []

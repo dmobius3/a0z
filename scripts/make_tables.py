@@ -12,19 +12,19 @@ Tables produced
 
 Table 1 (§3.1)  Cosmology + a_0(z) at eight reference redshifts.
                 Numerical, eight rows.
-Table 2 (§4.2)  BTFR shifts at six reference redshifts. Numerical, six rows.
-Table 3 (§5.2)  Rotation-curve archetypes at z=0 and z=2. Numerical, four
+Table 2 (§3.1)  BTFR shifts at six reference redshifts. Numerical, six rows.
+Table 3 (§3.2)  Rotation-curve archetypes at z=0 and z=2. Numerical, four
                 rows (Dwarf / Sub-L* / L* / Giant).
-Table 4 (§6.3)  L* lensing M_dyn/M_b at three apertures times five redshifts.
+Table 4 (§3.3)  L* lensing M_dyn/M_b at three apertures times five redshifts.
                 Numerical.
-Table 5 (§7.8)  Summary of constraint status. Six rows. Text-only (no
+Table 5 (§4.5)  Summary of constraint status. Six rows. Text-only (no
                 numerical content; emitted from a literal table that mirrors
                 the paper's Table 5 exactly, with a verification check that
                 the rendered text matches).
-Table 6 (§9.1)  Five predictions from one relation. Five rows. The numeric
+Table 6 (§3.5)  Five predictions from one relation. Five rows. The numeric
                 "Value at z = 2" column is computed from the analysis
                 modules; the rest is descriptive text.
-Table 7 (§9.2)  Falsification criteria. Six rows. Text-only.
+Table 7 (§5)  Falsification criteria. Six rows. Text-only.
 
 Outputs
 -------
@@ -81,9 +81,9 @@ import btfr       # noqa: F401  -- A_BTFR, A/A0, M_b, v_flat ratios for Table 2
 import rotation_curves  # noqa: F401  -- r_M, v_flat archetypes for Table 3
 import lensing    # noqa: F401  -- M_dyn/M_b for Table 4
 import jwst_speedup  # noqa: F401  -- E^(1/4) speedup for Table 6 row 5
-import ubler_sigma_tension  # noqa: F401  -- §7.2 sigma tension (not Table N)
-import cmb_leakage  # noqa: F401  -- §7.5 epsilon bound (not Table N)
-import combinatorial_baseline  # noqa: F401  -- §2.5 sparsity (not Table N)
+import ubler_sigma_tension  # noqa: F401  -- §4.1 sigma tension (not Table N)
+import cmb_leakage  # noqa: F401  -- §4.3 epsilon bound (not Table N)
+import combinatorial_baseline  # noqa: F401  -- §2 sparsity (not Table N)
 
 
 # ---------------------------------------------------------------------------
@@ -242,7 +242,7 @@ def build_table1() -> Tuple[List[List[str]], List[CellCheck]]:
 
 
 # ---------------------------------------------------------------------------
-# Table 2: BTFR at six reference redshifts (§4.2)
+# Table 2: BTFR at six reference redshifts (§3.1)
 # ---------------------------------------------------------------------------
 
 TABLE2_REDSHIFTS: Tuple[float, ...] = (0.0, 0.5, 1.0, 2.0, 5.0, 10.0)
@@ -291,7 +291,7 @@ def build_table2() -> Tuple[List[List[str]], List[CellCheck]]:
 
 
 # ---------------------------------------------------------------------------
-# Table 3: rotation-curve archetypes (§5.2)
+# Table 3: rotation-curve archetypes (§3.2)
 # ---------------------------------------------------------------------------
 #
 # Paper Table 3 columns: Archetype | M_b | R_d | r_M(0) | r_M(2) |
@@ -356,7 +356,7 @@ def build_table3() -> Tuple[List[List[str]], List[CellCheck]]:
 
 
 # ---------------------------------------------------------------------------
-# Table 4: L* lensing M_dyn/M_b at three apertures, five redshifts (§6.3)
+# Table 4: L* lensing M_dyn/M_b at three apertures, five redshifts (§3.3)
 # ---------------------------------------------------------------------------
 
 TABLE4_R_KPC: Tuple[int, ...] = (30, 100, 300)
@@ -399,7 +399,7 @@ def build_table4() -> Tuple[List[List[str]], List[CellCheck]]:
 
 
 # ---------------------------------------------------------------------------
-# Table 5: summary of constraint status (§7.8)
+# Table 5: summary of constraint status (§4.5)
 # ---------------------------------------------------------------------------
 #
 # Table 5 is purely qualitative text. The "Framework status" column is a
@@ -494,7 +494,7 @@ def build_table5() -> Tuple[List[List[str]], List[CellCheck]]:
 
 
 # ---------------------------------------------------------------------------
-# Table 6: five predictions from one relation (§9.1)
+# Table 6: five predictions from one relation (§3.5)
 # ---------------------------------------------------------------------------
 #
 # Cols: Section | Observable | Scaling | Value at z = 2 | Test instrument
@@ -503,15 +503,15 @@ def build_table5() -> Tuple[List[List[str]], List[CellCheck]]:
 
 PAPER_TABLE6_ROWS = [
     # (section, observable, scaling, value_at_z2_str, test_instrument)
-    ("§4", "BTFR normalization A_BTFR(z)/A_BTFR(0)",
+    ("§3.1", "BTFR normalization A_BTFR(z)/A_BTFR(0)",
      "E(z)^-1",  "0.330", "KMOS3D, KGES, Euclid DR1"),
-    ("§5", "MOND radius r_M(z)/r_M(0)",
+    ("§3.2", "MOND radius r_M(z)/r_M(0)",
      "E(z)^-1/2", "0.574", "High-z rotation curves"),
-    ("§4, §5", "Asymptotic velocity v_flat(z)/v_flat(0) at fixed M_b",
+    ("§3.1, §3.2", "Asymptotic velocity v_flat(z)/v_flat(0) at fixed M_b",
      "E(z)^+1/4", "1.320", "KMOS3D, KGES, Euclid DR1"),
-    ("§6", "Lensing M_dyn/M_b enhancement",
+    ("§3.3", "Lensing M_dyn/M_b enhancement",
      "E(z)^+1/2", "1.741", "Euclid DR1 stacked galaxy-galaxy lensing"),
-    ("§7.7", "Free-fall collapse time t_ff(z)/t_ff(0)",
+    ("§3.4", "Free-fall collapse time t_ff(z)/t_ff(0)",
      "E(z)^-1/4", "0.758", "JWST early-galaxy spectroscopy"),
 ]
 
@@ -524,15 +524,15 @@ def build_table6() -> Tuple[List[List[str]], List[CellCheck]]:
     # at z = 2, at 3 dp.
     z2 = 2.0
 
-    # §4 BTFR ratio: A(z)/A(0) = 1/E_eff(z)
+    # §3.1 BTFR ratio: A(z)/A(0) = 1/E_eff(z)
     v_btfr = btfr.A_ratio(z2)
-    # §5 r_M ratio
+    # §3.2 r_M ratio
     v_rm = rotation_curves.r_M_ratio(z2)
-    # §4/§5 v_flat ratio at fixed M_b
+    # §3.1/§3.2 v_flat ratio at fixed M_b
     v_v = rotation_curves.v_flat_ratio(z2)
-    # §6 lensing enhancement sqrt(E(z))
+    # §3.3 lensing enhancement sqrt(E(z))
     v_lens = lensing.fractional_lensing_enhancement(z2)
-    # §7.7 free-fall collapse time ratio: t_ff(z)/t_ff(0) = 1/E^(1/4)
+    # §3.4 free-fall collapse time ratio: t_ff(z)/t_ff(0) = 1/E^(1/4)
     v_tff = 1.0 / jwst_speedup.speedup_factor(z2)
 
     computed_values = [v_btfr, v_rm, v_v, v_lens, v_tff]
@@ -565,7 +565,7 @@ def build_table6() -> Tuple[List[List[str]], List[CellCheck]]:
 
 
 # ---------------------------------------------------------------------------
-# Table 7: falsification criteria (§9.2)
+# Table 7: falsification criteria (§5)
 # ---------------------------------------------------------------------------
 #
 # Table 7 is text-only. The script transcribes the paper's six rows
@@ -573,21 +573,21 @@ def build_table6() -> Tuple[List[List[str]], List[CellCheck]]:
 # strings below.
 #
 # (Note: the user's hint about "Module 7's underlying Δb_obs(0.9) = -0.443"
-# applies to the §7.2 σ-tension table, which is unnumbered prose, not
-# Table 7. Tables 5, 6, 7 in the paper are at §7.8, §9.1, §9.2 respectively.
+# applies to the §4.1 σ-tension table, which is unnumbered prose, not
+# Table 7. Tables 5, 6, 7 in the paper are at §3.5, §4.5, §5 respectively.
 # This script does NOT emit a CSV for the σ-tension table because it is
 # not one of Tables 1-7; the σ-tension table is reproduced separately by
 # Module 7 (`ubler_sigma_tension.py`).)
 
 PAPER_TABLE7_ROWS: List[Tuple[str, str, str, str]] = [
     (
-        "§4 BTFR (A)",
+        "§3.1 BTFR (A)",
         "A_BTFR(z)/A_BTFR(0) = 1/E(z)",
         "Single-z inconsistency at >= 2 sigma",
         "Pressure-support velocity correction alpha sigma^2",
     ),
     (
-        "§4 BTFR (shape)",
+        "§3.1 BTFR (shape)",
         "Strict monotonic decrease in z",
         ("Non-monotonic trend confirmed under matched-systematics "
          "measurements at >= 2 sigma"),
@@ -597,19 +597,19 @@ PAPER_TABLE7_ROWS: List[Tuple[str, str, str, str]] = [
          "does not account for the observed non-monotonicity"),
     ),
     (
-        "§5 r_M scaling",
+        "§3.2 r_M scaling",
         "r_M(z)/r_M(0) = E(z)^-1/2",
         "Single-z inconsistency at >= 2 sigma",
         "Baryonic-mass distribution model",
     ),
     (
-        "§5, §6 mass-independence",
+        "§3.2, §3.3 mass-independence",
         "Fractional shift independent of M_b",
         "Mass-stratified analysis showing mass-dependent shift",
         "Halo-mass dependence in selection function",
     ),
     (
-        "§6 lensing",
+        "§3.3 lensing",
         ("M_dyn/M_b enhancement = sqrt(E(z)), mass- and "
          "aperture-independent"),
         ("Single-z inconsistency at >= 2 sigma, OR mass/aperture-stratified "
@@ -617,7 +617,7 @@ PAPER_TABLE7_ROWS: List[Tuple[str, str, str, str]] = [
         "Halo-concentration evolution model (Duffy et al. 2008 [15] baseline)",
     ),
     (
-        "§7.7 JWST efficiency",
+        "§3.4 JWST efficiency",
         "eps_SF^MIT(z) = eps_SF^LCDM(z)/E(z)^(1/4)",
         ("Spectroscopically confirmed candidate with eps_SF^LCDM >= 1 whose "
          "corrected efficiency eps_SF^MIT = eps_SF^LCDM/E(z)^(1/4) still "
@@ -701,17 +701,17 @@ def main() -> int:
     builds = [
         ("table1.csv", "Table 1 (§3.1, cosmology + a_0(z))",
          TABLE1_HEADER, *build_table1()),
-        ("table2.csv", "Table 2 (§4.2, BTFR shifts)",
+        ("table2.csv", "Table 2 (§3.1, BTFR shifts)",
          TABLE2_HEADER, *build_table2()),
-        ("table3.csv", "Table 3 (§5.2, archetype rotation curves)",
+        ("table3.csv", "Table 3 (§3.2, archetype rotation curves)",
          TABLE3_HEADER, *build_table3()),
-        ("table4.csv", "Table 4 (§6.3, L* lensing M_dyn/M_b)",
+        ("table4.csv", "Table 4 (§3.3, L* lensing M_dyn/M_b)",
          TABLE4_HEADER, *build_table4()),
-        ("table5.csv", "Table 5 (§7.8, constraint status)",
+        ("table5.csv", "Table 5 (§4.5, constraint status)",
          TABLE5_HEADER, *build_table5()),
-        ("table6.csv", "Table 6 (§9.1, predictions @ z = 2)",
+        ("table6.csv", "Table 6 (§3.5, predictions @ z = 2)",
          TABLE6_HEADER, *build_table6()),
-        ("table7.csv", "Table 7 (§9.2, falsification criteria)",
+        ("table7.csv", "Table 7 (§5, falsification criteria)",
          TABLE7_HEADER, *build_table7()),
     ]
 

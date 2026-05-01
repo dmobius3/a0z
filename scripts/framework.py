@@ -9,7 +9,7 @@ that turns those into dimensional predictions.
 
 References (paper section numbers are from a0-evolution-paper.md):
   - C(Theta) = 2 sin^2(pi Theta), with Theta on the 120-domain native to
-    the binary-icosahedral quotient S^3 / 2I             (paper eq. in §2.1)
+    the binary-icosahedral quotient S^3 / 2I             (paper eq. (2.1))
   - Edge-mode scaling law:
         A_edge(z) / A_P = C(Theta_A) * N_H(z)            (eq. 2.1)
     with N_H(z) defined through the calibration relation
@@ -57,12 +57,12 @@ G_NEWTON = 6.67430e-11                  # m^3 / (kg s^2)
 T_PLANCK = np.sqrt(HBAR * G_NEWTON / C_LIGHT**5)         # ~5.39e-44 s
 A_PLANCK = C_LIGHT / T_PLANCK                            # ~5.56e51 m/s^2
 
-# SPARC local acceleration scale, used only in the §2.5 absolute-value check.
+# SPARC local acceleration scale, used only in the §2 absolute-value check.
 A0_SPARC_LOCAL = 1.20e-10                                # m / s^2
 
 
 # ---------------------------------------------------------------------------
-# Phase operator on the 120-domain (§2.1)
+# Phase operator on the 120-domain (§2)
 # ---------------------------------------------------------------------------
 
 DOMAIN_SIZE = 120  # binary-icosahedral quotient S^3 / 2I
@@ -74,7 +74,7 @@ def C_phase(theta):
 
     `theta` may be a scalar or array of phase positions in [0, 1].
     Returns the unit-mean-normalized squared modulus of the anti-periodic
-    Möbius ground mode (paper §2.1).
+    Möbius ground mode (paper §2).
     """
     theta = np.asarray(theta, dtype=float)
     return 2.0 * np.sin(np.pi * theta) ** 2
@@ -88,11 +88,21 @@ def C_well(k: int) -> float:
 
 
 # ---------------------------------------------------------------------------
-# Fibonacci-well assignments (§2.3, Appendix A.3)
+# Fibonacci-well assignments (Appendix A.3)
 # ---------------------------------------------------------------------------
 #
-# The Fibonacci-well subset of the 120-domain is {13, 21, 34, 55, 60}/120
-# (paper §2.5). The two wells used by the present paper are:
+# The Fibonacci wells on the 120-domain are F_7..F_10 = {13, 21, 34, 55}/120.
+# F_11 = 89 collapses to F_8 = 21 under the reflection symmetry
+# C(k) = C(120 - k), so the four distinct Fibonacci wells give
+# C(4, 2) = 6 unordered well-pairs (paper App A.3, §1, §2).
+#
+# Lambda sits at the antinode 60/120 (surface mode, n = 2). It is NOT a
+# Fibonacci well; it is the topologically protected fixed point where
+# d ln C / d Theta = 0 (paper App A.3, eligibility condition 3). Listed
+# below in WELL_ASSIGNMENTS for completeness, but excluded from the
+# Fibonacci subset.
+#
+# The two wells used by the present paper are:
 #
 #     a_0 -> 13/120     (edge mode, n = 1)
 #     H   -> 34/120     (edge mode, n = 1)
@@ -100,13 +110,12 @@ def C_well(k: int) -> float:
 # These are calibration inputs at z = 0, not derived; their structural
 # ratio (2.4) is the testable claim of §2.
 
-FIBONACCI_WELLS = (13, 21, 34, 55, 60)
+FIBONACCI_WELLS = (13, 21, 34, 55)
 
 WELL_ASSIGNMENTS: Mapping[str, int] = {
-    "a_0": 13,   # edge mode
-    "H":   34,   # edge mode
-    "Lambda": 60,  # surface mode (§2.8) -- listed here for completeness,
-                   # but not used by the §2 prediction.
+    "a_0": 13,     # edge mode (Fibonacci well)
+    "H":   34,     # edge mode (Fibonacci well)
+    "Lambda": 60,  # surface mode antinode (App A.3) — not a Fibonacci well.
 }
 
 # Manifold-mode index n in the scaling law A/A_P = C(Theta) * N^n.
@@ -149,13 +158,13 @@ def a0_of_z(z, cosmo: Cosmology = PLANCK18) -> float:
         a_0(z) = a_P * C(13/120) * N_H(z).
 
     Equivalently a_0(z) = (C(13/120)/C(34/120)) * c * H(z), which is the
-    §2.4 structural form.
+    eq. (2.4) structural form.
     """
     return A_PLANCK * C_well(13) * N_H(z, cosmo=cosmo)
 
 
 def a0_over_cH_predicted() -> float:
-    """The §2.4 structural ratio C(13/120) / C(34/120)."""
+    """The eq. (2.4) structural ratio C(13/120) / C(34/120)."""
     return C_well(13) / C_well(34)
 
 
@@ -163,7 +172,7 @@ def a0_over_cH_observed(
     a0: float = A0_SPARC_LOCAL,
     H0_km_s_Mpc: float = PLANCK18.H0,
 ) -> float:
-    """The observed Milgrom ratio a_0 / (c H_0), §2.5 absolute-value check."""
+    """The observed Milgrom ratio a_0 / (c H_0), §2 absolute-value check."""
     H0_si = _H_in_per_second(H0_km_s_Mpc)
     return a0 / (C_LIGHT * H0_si)
 
@@ -214,7 +223,7 @@ def main():
     print(f"  a_0(0) / (c H_0)   = {cross:.10f}  "
           f"(should equal {ratio_pred:.10f})")
 
-    # Print the §2.5 percent-level disagreement between the structural
+    # Print the §2 percent-level disagreement between the structural
     # prediction and the observed ratio (paper quotes 0.8%).
     pct = 100.0 * (ratio_pred - ratio_obs) / ratio_obs
     print()
