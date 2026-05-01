@@ -73,9 +73,12 @@ Citation metadata is in `CITATION.cff` (machine-readable) and the Zenodo record 
 │   ├── cmb_leakage.py                   §4.3 ε bound from Planck first-peak amplitude
 │   ├── verify.py                        Single-command pass/fail harness across all modules
 │   ├── make_tables.py                   Generate Tables 1–8 + Table B.1 from the analysis modules
-│   └── make_figures.py                  Generate paper figures from the analysis modules
+│   └── make_figures.py                  Generate the four paper figures from the analysis modules
 ├── figures/
-│   └── figure{1..5}.{pdf,png}           One PDF and one PNG per paper figure
+│   ├── figure1.{pdf,png}                §2 Milgrom-ratio sparsity on the 120-domain
+│   ├── figure2.{pdf,png}                §3.3 + App B Euclid DR1 lensing discriminator
+│   ├── figure3.{pdf,png}                §3.5 five exponents from one input
+│   └── figure4.{pdf,png}                §4.1 Übler trend-shape tension
 └── tables/
     ├── table{1..8}.csv                  One CSV per paper table (§3 / §3.1 / §3.2 / §3.3 / §3.5 / §4.5 / §5 / §5)
     └── tableB1.csv                      App B.3 ΛCDM bracketing at L*, R = 100 kpc

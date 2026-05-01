@@ -17,7 +17,7 @@ Python pipeline that reproduces every numerical claim in the paper. The lean PRD
 | `cmb_leakage.py` | ε bound from Planck first-peak amplitude precision | §4.3 |
 | `verify.py` | Single-command pass/fail harness across all modules | All |
 | `make_tables.py` | Generate Tables 1–8 + Table B.1 from the analysis modules | All |
-| `make_figures.py` | Generate paper figures from the analysis modules | TBD |
+| `make_figures.py` | Generate the four paper figures from the analysis modules | §2, §3.3, §3.5, §4.1 |
 
 ## Coding standards
 
