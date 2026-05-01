@@ -56,7 +56,7 @@ Verification target (§3.4)
 
 The paper's quantitative claim is the speedup-factor range:
 
-    E(z)^(1/4) ≈ 1.92 – 2.06          (§3.4, line 631)
+    E(z)^(1/4) ∈ [1.92, 2.06]          (§3.4)
 
 evaluated across the six z_phot values, with a corresponding
 "approximately a factor of two" uniform reduction in epsilon_SF.

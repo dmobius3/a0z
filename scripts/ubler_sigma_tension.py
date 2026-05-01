@@ -1,7 +1,7 @@
 """Übler+ 2017 KMOS3D BTFR σ-tension (paper §4.1).
 
 The framework predicts a strict monotonic decrease in the BTFR zero-point
-with redshift, Δb_MIT(z) = -log10(E(z)/E(0)) under (4.3). Übler+ 2017 [9]
+with redshift, Δb_MIT(z) = -log10(E(z)/E(0)) under (eq. 3.1). Übler+ 2017 [9]
 report fixed-slope zero-points at two redshift bins; their offsets relative
 to the local Lelli baseline are non-monotonic in z. The §4.1 σ-tension
 table quantifies the disagreement under three error budgets.
@@ -53,7 +53,7 @@ SIGMA_VELCORR = 0.10    # dex, velocity-correction systematic
 
 
 def delta_b_MIT(z: float, cosmo: Cosmology = PLANCK18) -> float:
-    """Framework prediction Δb_MIT(z) = -log10(E_eff(z)) under (4.3)."""
+    """Framework prediction Δb_MIT(z) = -log10(E_eff(z)) under (eq. 3.1)."""
     return -math.log10(_E_eff(z, cosmo=cosmo))
 
 

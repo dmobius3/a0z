@@ -63,7 +63,7 @@ Imports
 Notes on convention
 -------------------
 The paper uses the anchored convention a_0(z) = a_0_SPARC * E(z)/E(0)
-throughout (§3.1, §3.1). The framework's structural form a_0(z) = a_P * C(13/120)
+throughout (§3, §4). The framework's structural form a_0(z) = a_P * C(13/120)
 * N_H(z) (eq. 2.2) gives a_0(z=0) close to but slightly above the SPARC value;
 the §§3-5 numerical predictions all use the SPARC-anchored form so that the
 local calibration is the SPARC measurement. We follow the same convention

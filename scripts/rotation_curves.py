@@ -28,7 +28,7 @@ Imports:
   - btfr:      M_SUN_KG, KM_PER_M, _E_eff (anchored E(z)/E(0))
 
 §3.2 paper claims this script verifies:
-  - §5.1 fractional r_M shifts: 0.574 (z=2), 0.347 (z=5), 0.221 (z=10)
+  - §3.2 fractional r_M shifts: 0.574 (z=2), 0.347 (z=5), 0.221 (z=10)
   - §3.2 Table 3 archetypes (Dwarf / Sub-L* / L* / Giant) at z=0 and z=2
   - §3.2 L* asymptotes 176 km/s (z=0), 232 km/s (z=2)
   - Caption shifts: r_M(2)/r_M(0) = 0.574, v_flat(2)/v_flat(0) = 1.320
@@ -67,7 +67,7 @@ def a0_of_z_anchored(z, cosmo: Cosmology = PLANCK18,
 
 
 # ---------------------------------------------------------------------------
-# §5.1 MOND transition radius
+# §3.2 MOND transition radius
 # ---------------------------------------------------------------------------
 
 def r_M(M_b_solar: float, z: float = 0.0,
@@ -164,8 +164,8 @@ def main():
     all_match = True
     mismatches = []
 
-    # ----- §5.1 fractional r_M shifts -----
-    print("§5.1 fractional MOND-radius shifts (mass-independent):")
+    # ----- §3.2 fractional r_M shifts -----
+    print("§3.2 fractional MOND-radius shifts (mass-independent):")
     fractional_targets = {
         2.0: 0.574,
         5.0: 0.347,
@@ -180,7 +180,7 @@ def main():
               f"-> {rounded:.3f}  (paper: {target:.3f})  [{flag}]")
         if not ok:
             all_match = False
-            mismatches.append((f"§5.1 r_M ratio z={z}", target, val, 3))
+            mismatches.append((f"§3.2 r_M ratio z={z}", target, val, 3))
     print()
 
     # Caption shifts (r_M(2)/r_M(0) = 0.574 already covered; v_flat(2)/v_flat(0))

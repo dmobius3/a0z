@@ -16,7 +16,7 @@ this script is purely a presentation layer that calls into:
 Figures generated (paper sections in parentheses):
 
     Figure 1 (§3.2)  a_0(z)/a_0(0) = E(z)/E(0) from z=0 to z=15, log-y.
-    Figure 2 (§4.3)  BTFR loci log10(M_b) vs log10(v_flat) at z = 0, 1, 2,
+    Figure 2 (§3.1)  BTFR loci log10(M_b) vs log10(v_flat) at z = 0, 1, 2,
                      v_flat = 30..400 km/s, slope-4 lines anchored to
                      A_BTFR(0) = 62.78 M_sun/(km/s)^4.
     Figure 3 (§3.2)  L* archetype rotation curve at z = 0 and z = 2,
@@ -178,7 +178,7 @@ def figure1() -> Tuple[str, str, dict]:
 # ---------------------------------------------------------------------------
 
 def figure2() -> Tuple[str, str, dict]:
-    """Figure 2 (§4.3): log10 M_b vs log10 v_flat, three slope-4 lines.
+    """Figure 2 (§3.1): log10 M_b vs log10 v_flat, three slope-4 lines.
 
     Anchor: A_BTFR(0) = 62.78 M_sun/(km/s)^4. At redshift z the line is
     log10(M_b) = log10(A_BTFR(0)) - log10(E(z)/E(0)) + 4 log10(v_flat).
@@ -449,7 +449,7 @@ def figure5() -> Tuple[str, str, dict]:
     """Figure 5 (§3.3): L* M_dyn(R)/M_b vs R for R = 10..500 kpc at
     z = 0, 1, 2.
 
-    Framework prediction: solid lines (eq. 6.3).
+    Framework prediction: solid lines (eq. (3.3)).
     ΛCDM comparison: dashed lines, using Module 5's LSTAR_HALO_TABLE
     (M_halo, c) values per Appendix B.
     """
@@ -550,7 +550,7 @@ def main() -> None:
 
     builders = [
         ("Figure 1 (§3.2 a_0(z)/a_0(0))",   figure1),
-        ("Figure 2 (§4.3 BTFR loci)",       figure2),
+        ("Figure 2 (§3.1 BTFR loci)",       figure2),
         ("Figure 3 (§3.2 L* rotation curve)", figure3),
         ("Figure 4 (§3.2 r_M vs z)",        figure4),
         ("Figure 5 (§3.3 M_dyn/M_b vs R)",  figure5),

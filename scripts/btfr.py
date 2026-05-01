@@ -4,7 +4,7 @@ btfr.py
 
 Baryonic Tully-Fisher relation across cosmic time (paper §3.1).
 
-Deep-MOND BTFR (paper eq. 4.1):
+Deep-MOND BTFR (paper §3.1):
 
     v_flat^4 = G * M_b * a_0(z),
 

@@ -4,15 +4,15 @@ lensing.py
 
 Galaxy-galaxy weak lensing predictions across cosmic time (paper §3.3).
 
-Framework prediction (§3.3, eq. 6.3):
+Framework prediction (§3.3, eq. (3.3)):
 
     M_dyn(R, z) / M_b = (R / r_M(0)) * sqrt( E(z)/E(0) ),
 
-derived by combining the Newtonian inversion (§3.3, eq. 6.1)
+derived by combining the Newtonian inversion (§3.3 proxy)
 
     M_dyn(R) = v_flat^2 R / G
 
-with the deep-MOND BTFR (§4.1, eq. 4.1)
+with the deep-MOND BTFR (§3.1, eq. (3.1))
 
     v_flat^4 = G * M_b * a_0(z),
 
@@ -115,13 +115,13 @@ def rho_crit_z_si(z, cosmo: Cosmology = PLANCK18) -> float:
 
 
 # ---------------------------------------------------------------------------
-# §3.3 Newtonian-inversion proxy and §3.3 framework prediction (eq. 6.3)
+# §3.3 Newtonian-inversion proxy and §3.3 framework prediction (eq. (3.3))
 # ---------------------------------------------------------------------------
 
 def M_dyn_over_Mb_framework(R_kpc: float, z: float, M_b_solar: float,
                             cosmo: Cosmology = PLANCK18,
                             a0_local: float = A0_SPARC_LOCAL) -> float:
-    """Framework prediction (eq. 6.3):
+    """Framework prediction (eq. (3.3)):
 
         M_dyn(R, z) / M_b  =  R / r_M(0) * sqrt( E(z)/E(0) ).
 
