@@ -17,7 +17,8 @@ The six central-value massive candidates ($\log_{10}(M_\star/M_\odot) > 10$) use
 - `id`: Labbé catalog ID
 - `z_phot`: photometric redshift
 - `log_mstar`: $\log_{10}(M_\star/M_\odot)$
-- `epsilon_sf_lcdm`: required star-formation efficiency under standard ΛCDM (when reported)
+
+The §3.4 prediction $\epsilon_\text{SF}^\text{MIT} = \epsilon_\text{SF}^\text{ΛCDM} / E(z)^{1/4}$ is computed by `jwst_speedup.py` directly from `z_phot`; it does not consume a per-candidate $\epsilon_\text{SF}^\text{ΛCDM}$ column.
 
 ## Other observational inputs
 
