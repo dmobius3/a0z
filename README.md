@@ -202,5 +202,3 @@ This repository is released under the MIT License. See `LICENSE` for the full te
 
 - Author: B. Shatto, bshatto.pe@gmail.com
 - Issues and questions: please open a [GitHub issue](https://github.com/dmobius3/a0z/issues).
-
-For broader work on the framework, see the framework repository at [github.com/dmobius3/mode-identity-theory](https://github.com/dmobius3/mode-identity-theory). For the companion paper on the surface sector (Λcos), see [github.com/dmobius3/lambdacos](https://github.com/dmobius3/lambdacos).
