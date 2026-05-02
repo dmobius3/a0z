@@ -46,7 +46,24 @@ Reproducible results in this repository:
 
 If you use this code or data, please cite the paper and the Zenodo archive of this repository.
 
-Citation metadata is in `CITATION.cff` (machine-readable) and the Zenodo record (DOI assigned per release).
+The repository is archived on Zenodo:
+
+- **Concept DOI** (resolves to the latest version): [10.5281/zenodo.19980665](https://doi.org/10.5281/zenodo.19980665)
+- **Version DOI** (this release, v1.1.0): [10.5281/zenodo.19980666](https://doi.org/10.5281/zenodo.19980666)
+
+For paper citations and machine-readable use the **concept DOI**; it auto-resolves to the latest version. For citing the exact code state used in a specific analysis, use the version DOI.
+
+```bibtex
+@software{ShattoA0ZCode2026,
+  author = {Shatto, B.},
+  title  = {a0z: Code and Data for "Epoch-Dependent Acceleration
+            Scale from Bounded Topology"},
+  year   = {2026},
+  doi    = {10.5281/zenodo.19980665},
+  url    = {https://doi.org/10.5281/zenodo.19980665},
+  note   = {Concept DOI; resolves to the latest version}
+}
+```
 
 ---
 
