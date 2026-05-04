@@ -165,7 +165,7 @@ def run(modules: List[str], quiet: bool) -> int:
                 print()
         return 1
 
-    print("All modules report green against the lean PRD draft of the paper.")
+    print("All modules report green against the paper.")
     print()
     return 0
 

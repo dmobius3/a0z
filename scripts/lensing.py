@@ -72,8 +72,8 @@ LambdaCDM comparison (Appendix B, also §3.3):
     using R = 100 kpc framework values 11.98 and 20.86.
   - Supplementary visualization (figure5.pdf via make_figures.py):
     vertical offset between curves equals log10(sqrt(E(z))) at each
-    redshift; this is a derived consistency check on §3.3, not a
-    paper figure (the lean PRD draft has no figures).
+    redshift; this is a derived consistency check on §3.3, not one of
+    the four paper figures.
 
 Imports:
   - cosmology: PLANCK18, raw E(z), H_0, KM_PER_MPC

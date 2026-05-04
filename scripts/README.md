@@ -1,6 +1,6 @@
 # Analysis scripts
 
-Python pipeline that reproduces every numerical claim in the paper. The lean PRD draft's tables and headline numbers are regenerated cell-by-cell from the modules below; `verify.py` provides a single-command pass/fail gate.
+Python pipeline that reproduces every numerical claim in the paper. The paper's tables and headline numbers are regenerated cell-by-cell from the modules below; `verify.py` provides a single-command pass/fail gate.
 
 ## Module overview
 

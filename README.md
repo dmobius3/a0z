@@ -14,7 +14,7 @@ The paper derives an epoch-dependent MOND acceleration scale
 
 $$a_0(z) = a_0(0) \cdot E(z)$$
 
-within a bounded-topology measurement framework, where $E(z) = H(z)/H_0$ is the Friedmann dimensionless Hubble parameter. The local Milgrom ratio $a_0/(cH_0)$ is predicted as the structural ratio of two phase-operator values at adjacent Fibonacci wells of the framework's 120-domain, $C(13/120)/C(34/120) = 0.1845$, agreeing with observation at the 0.7% level.
+within a bounded-topology measurement framework, where $E(z) = H(z)/H_0$ is the Friedmann dimensionless Hubble parameter. The local Milgrom ratio $a_0/(cH_0)$ is predicted as the structural ratio of two phase-operator values at Fibonacci wells of the framework's 120-domain, $C(13/120)/C(34/120) = 0.1845$, agreeing with observation at the 0.7% level.
 
 Five distinct observable channels follow from the single relation $a_0(z) \propto E(z)$ as different powers of $E(z)$:
 
@@ -138,7 +138,7 @@ A single command checks every numerical claim in the paper against the correspon
 python scripts/verify.py
 ```
 
-Exit code 0 plus `All modules report green against the lean PRD draft of the paper.` means every assertion the paper depends on is reproducible from the scripts. Exit code 1 prints the failure list module-by-module with the relevant stdout tail.
+Exit code 0 plus `All modules report green against the paper.` means every assertion the paper depends on is reproducible from the scripts. Exit code 1 prints the failure list module-by-module with the relevant stdout tail.
 
 ---
 

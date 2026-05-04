@@ -7,8 +7,8 @@ Table B.1 of the paper (``a0-evolution-paper.md``) from the public APIs
 of the prior nine analysis modules and verifies every emitted cell
 against the paper's claimed value at the paper's displayed precision.
 
-Tables produced (lean PRD numbering)
-------------------------------------
+Tables produced
+---------------
 
 Table 1   (§3)    Cosmology + a_0(z) at eight reference redshifts.
                   Numerical, eight rows.
@@ -660,7 +660,7 @@ def build_table7() -> Tuple[List[List[str]], List[CellCheck]]:
 # Table 8: near-term test schedule (§5)
 # ---------------------------------------------------------------------------
 #
-# Text-only. Five rows transcribed verbatim from §5 of the lean PRD draft.
+# Text-only. Five rows transcribed verbatim from §5 of the paper.
 
 PAPER_TABLE8_ROWS: List[Tuple[str, str, str, str]] = [
     ("Stacked lensing, z = 0.5–2",
