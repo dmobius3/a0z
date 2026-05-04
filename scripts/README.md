@@ -14,6 +14,7 @@ Python pipeline that reproduces every numerical claim in the paper. The lean PRD
 | `lensing.py` | M_dyn/M_b under Newtonian inversion; ΛCDM NFW + Moster + Duffy comparison | §3.3, App B (Tables 4, B.1) |
 | `jwst_speedup.py` | E(z)^(1/4) free-fall collapse speedup, Labbé candidates | §3.4 |
 | `ubler_sigma_tension.py` | Analytic σ-tension table for the Übler+ 2017 KMOS3D BTFR comparison | §4.1 |
+| `ubler_forward_model.py` | Four-bias-model Monte Carlo forward analysis of the §4.1 BTFR systematics | §4.1 |
 | `cmb_leakage.py` | ε bound from Planck first-peak amplitude precision | §4.3 |
 | `verify.py` | Single-command pass/fail harness across all modules | All |
 | `make_tables.py` | Generate Tables 1–8 + Table B.1 from the analysis modules | All |
@@ -45,6 +46,8 @@ Scripts must hit these values from the paper exactly (within reported precision)
 - Übler residuals (observed minus framework prediction): $-0.216$ dex at $z=0.9$, $+0.270$ dex at $z=2.3$
 - σ-tension table per-bin: $T(z=0.9) = -5.4 / -3.4 / -1.8$ σ; $T(z=2.3) = +5.4 / +3.8 / +2.2$ σ across the three budgets
 - σ-tension table joint: $7.6\sigma$ / $5.1\sigma$ / $2.9\sigma$ across three uncertainty budgets
+- Forward-model joint L2 minimum: $\Delta b_\text{recov} = (-0.166, -0.429)$ at residuals $(+0.277, -0.159)$ dex; joint distance $0.319$ dex
+- Forward-model z=0.9-best: $\Delta b_\text{recov}(0.9) = -0.292$ ($+0.151$ dex above observed) with simultaneous $\Delta b_\text{recov}(2.3) = -0.648$
 - CMB leakage bound: $\varepsilon \leq 1.2 \times 10^{-5}$ at 0.5% Planck tolerance
 - JWST speedup: $E(z)^{1/4} \in [1.92, 2.06]$ across six Labbé candidates
 - Combinatorial sparsity: 24 of 7,021 phase-position pairs match within 1%; 6 unique phase-operator value-pairs after the reflection collapse $C(k) = C(120-k)$; 1 of 6 within the Fibonacci-well subset $\{13, 21, 34, 55\}/120$

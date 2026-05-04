@@ -36,6 +36,7 @@ Reproducible results in this repository:
 - **Near-term test schedule** (Table 8, §5)
 - **ΛCDM lensing discriminator with pess/repr/opt bracketing** (Table B.1, App B.3)
 - **Übler 2017 KMOS3D σ-tension** under three uncertainty budgets (§4.1)
+- **Übler 2017 forward-model bias sweep** (four-bias Monte Carlo: RPU, BS, NA, SI) showing no literature-plausible combination reproduces the observed BTFR pattern (§4.1)
 - **CMB leakage-coupling bound** $\varepsilon \leq 1.2 \times 10^{-5}$ at 0.5% Planck tolerance (§4.3)
 - **Combinatorial baseline** for the Milgrom-ratio match: 24 of 7,021 pairs match within 1%; 6 unique value-pairs after reflection collapse; 1 of 6 within the Fibonacci subset $\{13, 21, 34, 55\}/120$ (§2)
 - **Labbé candidate speedup factors** $E(z)^{1/4} \in [1.92, 2.06]$ (§3.4)
@@ -87,6 +88,7 @@ For paper citations and machine-readable use the **concept DOI**; it auto-resolv
 │   ├── lensing.py                       §3.3 + App B M_dyn/M_b, ΛCDM NFW comparison
 │   ├── jwst_speedup.py                  §3.4 free-fall collapse, Labbé candidates
 │   ├── ubler_sigma_tension.py           §4.1 analytic σ-tension table
+│   ├── ubler_forward_model.py           §4.1 four-bias Monte Carlo forward analysis
 │   ├── cmb_leakage.py                   §4.3 ε bound from Planck first-peak amplitude
 │   ├── verify.py                        Single-command pass/fail harness across all modules
 │   ├── make_tables.py                   Generate Tables 1–8 + Table B.1 from the analysis modules
@@ -161,6 +163,7 @@ python scripts/rotation_curves.py      # §3.2 archetype rotation curves
 python scripts/lensing.py              # §3.3 + App B M_dyn/M_b
 python scripts/jwst_speedup.py         # §3.4 Labbé speedup factors
 python scripts/ubler_sigma_tension.py  # §4.1 σ-tension table
+python scripts/ubler_forward_model.py  # §4.1 four-bias forward-model sweep
 python scripts/cmb_leakage.py          # §4.3 ε bound
 ```
 

@@ -42,6 +42,7 @@ MODULES = [
     "lensing",
     "jwst_speedup",
     "ubler_sigma_tension",
+    "ubler_forward_model",
     "cmb_leakage",
     "make_tables",
 ]

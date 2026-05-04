@@ -6,10 +6,11 @@ report fixed-slope zero-points at two redshift bins; their offsets relative
 to the local Lelli baseline are non-monotonic in z. The §4.1 σ-tension
 table quantifies the disagreement under three error budgets.
 
-This module reproduces the σ-tension table analytically. It does NOT
-implement the four-bias-model Monte Carlo forward analysis sketched in
-§4.1 prose; that analysis remains future work and the corresponding paper
-text was softened in the revision to avoid quoting irreproducible numbers.
+This module reproduces the analytic σ-tension table. The companion module
+``ubler_forward_model.py`` implements the four-bias-model Monte Carlo
+forward analysis described in the §4.1 prose (mock galaxies, Übler thick-
+disk correction, four-bias amplitude sweep, joint and per-bin closest-fit
+search).
 
 Inputs (from §4.1 + Übler+ 2017 + Lelli+ 2016):
   - Δb_obs(z=0.9)  = -0.44 dex
