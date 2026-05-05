@@ -40,5 +40,63 @@ add a bibtex pass to the build).
 
 For arXiv, copy `figure{1,2,3,4}.pdf` from `../figures/` into this
 directory before tarballing, or adjust `\graphicspath` to point at
-the bundled location. The class is plain `article.cls`; Springer
-production reformats to their journal style.
+the bundled location.
+
+## Submission to Foundations of Physics
+
+The current `\documentclass{article}` is for review/draft compilation
+only. FoP requires Springer's `svjour3` class at submission time.
+`svjour3.cls` is not on CTAN; obtain Springer's submission package
+from:
+
+> [https://www.springer.com/journal/10701/submission-guidelines](https://www.springer.com/journal/10701/submission-guidelines)
+
+(look for "LaTeX Macro Package" or "Author Resources"). The bundle
+contains `svjour3.cls`, `svglov3.clo`, and `spbasic.bst`. Drop them
+into this directory.
+
+### Swap steps
+
+1. In `a0z-paper.tex`, comment out the `\documentclass{article}` line
+   and uncomment the `\documentclass[smallextended]{svjour3}` line
+   directly below it.
+
+2. Remove `\usepackage{authblk}` from the preamble (svjour3 has its
+   own author macros).
+
+3. Replace the current title/author block
+
+    ```latex
+    \title{Epoch-Dependent Acceleration Scale from Bounded Topology:\\
+           Predictions for High-Redshift Galactic Dynamics}
+    \author[1]{B.~Shatto\thanks{...}}
+    \affil[1]{Independent Researcher, ...}
+    ```
+
+   with the svjour3-flavoured form:
+
+    ```latex
+    \title{Epoch-Dependent Acceleration Scale from Bounded Topology:
+           Predictions for High-Redshift Galactic Dynamics}
+    \author{B. Shatto}
+    \institute{B. Shatto \at
+        Independent Researcher, St. Petersburg, FL, USA \\
+        \email{bshatto.pe@gmail.com} \\
+        ORCID: 0009-0007-4419-1311}
+    ```
+
+4. Switch the bibliography from inline `thebibliography` back to
+   bibtex with Springer's BibTeX style:
+
+    ```latex
+    \bibliographystyle{spbasic}
+    \bibliography{references}
+    ```
+
+   (or keep `thebibliography` inline; svjour3 accepts either).
+
+5. Recompile (`pdflatex`, `bibtex`, `pdflatex`, `pdflatex` if you
+   switched to bibtex).
+
+The article-class draft and the svjour3 submission produce the same
+content; only the layout/formatting and the title-block macros differ.

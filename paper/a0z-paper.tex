@@ -9,9 +9,32 @@
 %   pdflatex a0z-paper
 % (Bibliography is inlined as thebibliography; no bibtex pass required.
 %  references.bib is kept alongside for optional bibtex regeneration.)
-% =====================================================================
+%
+% ---------------------------------------------------------------------
+% TARGET-JOURNAL CLASS SWITCH (Foundations of Physics)
+% ---------------------------------------------------------------------
+% This file builds with article.cls for review/draft compilation.
+% Foundations of Physics requires Springer's svjour3 class at
+% submission time. svjour3.cls is not on CTAN; download Springer's
+% submission package from
+%
+%   https://www.springer.com/journal/10701/submission-guidelines
+%
+% (look for "LaTeX Macro Package"). Drop svjour3.cls + svglov3.clo +
+% spbasic.bst into this directory, then:
+%
+%   1. Comment out the article-class line below.
+%   2. Uncomment the svjour3 line.
+%   3. Adjust the title/author block (lines marked "FoP author block")
+%      to use \institute and \email per svjour3 conventions.
+%   4. Remove \usepackage{authblk} (svjour3 has its own author macros).
+%   5. Recompile.
+%
+% See README.md "Submission to FoP" section for the exact swap.
+% ---------------------------------------------------------------------
 
 \documentclass[11pt,a4paper]{article}
+% \documentclass[smallextended]{svjour3}    % <-- FoP submission
 
 % --- core packages ---------------------------------------------------
 \usepackage[utf8]{inputenc}
@@ -116,7 +139,7 @@ has remained unexplained since Milgrom first noted it in 1983.
 Two current problems motivate examining this scale across cosmic time.
 
 First, the coincidence itself. Using the standard SPARC normalization
-\citep{Lelli2016} and Planck background value \citep{Planck2018},
+\citep{Lelli2016} and Planck 2018 $H_0$ \citep{Planck2018},
 $\afid/(cH_0) = 0.183$, numerically stable across four decades of
 improving measurements with no theoretical account of why.
 
