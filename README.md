@@ -50,7 +50,7 @@ If you use this code or data, please cite the paper and the Zenodo archive of th
 The repository is archived on Zenodo:
 
 - **Concept DOI** (resolves to the latest version): [10.5281/zenodo.19980665](https://doi.org/10.5281/zenodo.19980665)
-- **Version DOI** (this release, v1.1.0): [10.5281/zenodo.19980666](https://doi.org/10.5281/zenodo.19980666)
+- **Version DOI** (this release, v1.2.0): [10.5281/zenodo.20045115](https://doi.org/10.5281/zenodo.20045115)
 
 For paper citations and machine-readable use the **concept DOI**; it auto-resolves to the latest version. For citing the exact code state used in a specific analysis, use the version DOI.
 
