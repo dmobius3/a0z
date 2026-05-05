@@ -2,7 +2,7 @@
 % a0z paper: "Epoch-Dependent Acceleration Scale from Bounded Topology:
 %             Predictions for High-Redshift Galactic Dynamics"
 % Author: B. Shatto (Independent Researcher)
-% Target journal: Foundations of Physics
+% Target journal: Foundations of Physics (Springer)
 %
 % Build:
 %   pdflatex a0z-paper
@@ -10,39 +10,27 @@
 % (Bibliography is inlined as thebibliography; no bibtex pass required.
 %  references.bib is kept alongside for optional bibtex regeneration.)
 %
-% ---------------------------------------------------------------------
-% TARGET-JOURNAL CLASS SWITCH (Foundations of Physics)
-% ---------------------------------------------------------------------
-% This file builds with article.cls for review/draft compilation.
-% Foundations of Physics requires Springer's svjour3 class at
-% submission time. svjour3.cls is not on CTAN; download Springer's
-% submission package from
-%
-%   https://www.springer.com/journal/10701/submission-guidelines
-%
-% (look for "LaTeX Macro Package"). Drop svjour3.cls + svglov3.clo +
-% spbasic.bst into this directory, then:
-%
-%   1. Comment out the article-class line below.
-%   2. Uncomment the svjour3 line.
-%   3. Adjust the title/author block (lines marked "FoP author block")
-%      to use \institute and \email per svjour3 conventions.
-%   4. Remove \usepackage{authblk} (svjour3 has its own author macros).
-%   5. Recompile.
-%
-% See README.md "Submission to FoP" section for the exact swap.
-% ---------------------------------------------------------------------
+% Class: Springer svjour3 in single-column "smallextended" layout.
+% svjour3.cls + svglov3.clo + sp{basic,phys,mpsci}.bst are bundled in
+% this directory (sourced from https://github.com/latextemplates/svjour,
+% upstream copyright Springer; only valid for Springer-journal
+% submissions).
+% =====================================================================
 
-\documentclass[11pt,a4paper]{article}
-% \documentclass[smallextended]{svjour3}    % <-- FoP submission
+\documentclass[smallextended]{svjour3}
+% \documentclass[11pt,a4paper]{article}   % review/draft fallback
+\journalname{Found.\ Phys.}
 
 % --- core packages ---------------------------------------------------
+% svjour3 already sets page geometry and loads basic font/encoding
+% support; only the analysis-content packages are added here.
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{microtype}
-\usepackage[a4paper,margin=1in]{geometry}
-\usepackage{amsmath,amssymb,amsthm}
+\usepackage{amsmath,amssymb}
+% NOTE: svjour3 provides its own theorem/proof environments; do NOT load
+% amsthm or its \proof macro will collide with svjour3's.
 \usepackage{mathtools}
 \usepackage{graphicx}
 \usepackage{booktabs}
@@ -53,7 +41,6 @@
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage{enumitem}
 \usepackage{caption}
-\usepackage{authblk}
 
 % --- numbering -------------------------------------------------------
 \numberwithin{equation}{section}
@@ -91,10 +78,17 @@
 \title{Epoch-Dependent Acceleration Scale from Bounded Topology:\\
        Predictions for High-Redshift Galactic Dynamics}
 
-\author[1]{B.~Shatto%
-\thanks{Email: \href{mailto:bshatto.pe@gmail.com}{bshatto.pe@gmail.com}.\
-        ORCID: \href{https://orcid.org/0009-0007-4419-1311}{0009-0007-4419-1311}.}}
-\affil[1]{Independent Researcher, St.~Petersburg, FL, USA}
+\titlerunning{Epoch-Dependent Acceleration Scale}
+
+\author{B. Shatto}
+
+\authorrunning{B. Shatto}
+
+\institute{B. Shatto \at
+   Independent Researcher, St.~Petersburg, FL, USA \\
+   \email{bshatto.pe@gmail.com} \\
+   ORCID: \href{https://orcid.org/0009-0007-4419-1311}{0009-0007-4419-1311}
+}
 
 \date{\today}
 
@@ -420,6 +414,7 @@ $z = 2$ for four SPARC archetypes. The fractional shifts
 $\rM(2)/\rM(0) = 0.574$ and $\vflat(2)/\vflat(0) = 1.320$ apply
 identically across the table.}
 \label{tab:rotcurves}
+\resizebox{\linewidth}{!}{%
 \begin{tabular}{l r r r r r}
 \toprule
 Archetype & $\Mb$~[$\Msun$] & $\rM(0)$~[kpc] & $\rM(2)$~[kpc] &
@@ -430,7 +425,8 @@ Sub-$L^*$ (NGC 2403) & $1.0 \times 10^{10}$ & 3.41  & 1.96 & 112 & 148 \\
 $L^*$ (NGC 6946)     & $6.0 \times 10^{10}$ & 8.35  & 4.79 & 176 & 232 \\
 Giant (UGC 2885)     & $1.5 \times 10^{11}$ & 13.20 & 7.58 & 221 & 292 \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 The comparison isolates the effect of $\afid(z)$ at fixed baryonic
@@ -519,6 +515,8 @@ than $3\%$.
 \caption{The full predictive content of the evolving acceleration
 scale, evaluated at $z = 2$.}
 \label{tab:five-exponents}
+\small
+\setlength{\tabcolsep}{4pt}
 \begin{tabular}{l l r l}
 \toprule
 Observable & Scaling & Value at $z = 2$ & Primary test \\
@@ -709,7 +707,8 @@ independently.
 \centering
 \caption{Constraint status across five regimes.}
 \label{tab:constraint-status}
-\begin{tabular}{l l}
+\small
+\begin{tabular}{p{0.32\linewidth} p{0.60\linewidth}}
 \toprule
 Regime & Status \\
 \midrule
@@ -781,8 +780,9 @@ treated as a reportable tension; formal falsification requires either
 $\geq 3\sigma$ in one channel or mutually consistent $\geq 2\sigma$
 failures across independent redshift bins or observables.}
 \label{tab:falsification}
-\small
-\begin{tabular}{p{0.18\linewidth} p{0.22\linewidth} p{0.30\linewidth} p{0.20\linewidth}}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{p{0.16\linewidth} p{0.21\linewidth} p{0.32\linewidth} p{0.20\linewidth}}
 \toprule
 Prediction & Signature & Reportable tension if & Key systematic \\
 \midrule
@@ -804,8 +804,9 @@ universality simultaneously.
 \centering
 \caption{Near-term test schedule.}
 \label{tab:schedule}
-\small
-\begin{tabular}{p{0.26\linewidth} p{0.22\linewidth} p{0.30\linewidth} p{0.14\linewidth}}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{p{0.26\linewidth} p{0.22\linewidth} p{0.32\linewidth} p{0.13\linewidth}}
 \toprule
 Window & Instrument & Tests & Delivery \\
 \midrule
@@ -1029,8 +1030,9 @@ position ($\gcd(13, 120) = 1$), accessible only on the full 120-grid as
 required for a dynamical (non-photon-mediated) observable.
 
 \item $H_0$ is assigned $\Theta = 34/120$: the unique even-numerator
-Fibonacci well among $\{13, 21, 34, 55\}/120$, consistent with the
-bosonic-projection condition for a photon-mediated observation.
+Fibonacci well among $13/120$, $21/120$, $34/120$, and $55/120$,
+consistent with the bosonic-projection condition for a photon-mediated
+observation.
 
 \item $\Lambda$ is assigned $\Theta = 60/120$: the antinode, where the
 phase operator takes its maximum and the log-slope vanishes.
@@ -1165,8 +1167,7 @@ the $L^*$ archetype, $R = 100$~kpc.
 \caption{$\Lambda$CDM $L^*$ $\Mdyn/\Mb$ at $R = 100$~kpc under three
 parameterizations, against the framework's universal prediction.}
 \label{tab:bracketing}
-\small
-\setlength{\tabcolsep}{4pt}
+\resizebox{\linewidth}{!}{%
 \begin{tabular}{@{}l c c c c@{}}
 \toprule
 Parameterization & $(\Mhalo, c)$ at $z = 0$ & $(\Mhalo, c)$ at $z = 2$
@@ -1178,7 +1179,8 @@ Representative & $(1.5 \times 10^{12},\ 7.5)$ & $(7.0 \times 10^{11},\ 3.5)$ & 1
 Optimistic     & $(1.0 \times 10^{12},\ 6.0)$ & $(5.0 \times 10^{11},\ 2.5)$ & 10.3 / 11.2 & 1.86 \\
 \textbf{Framework (universal)} & --- & --- & \textbf{11.98 / 20.86} & --- \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 Even under the pessimistic parameterization, the framework's $z = 2$
