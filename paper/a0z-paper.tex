@@ -6,10 +6,9 @@
 %
 % Build:
 %   pdflatex a0z-paper
-%   bibtex   a0z-paper
 %   pdflatex a0z-paper
-%   pdflatex a0z-paper
-% (or:  latexmk -pdf a0z-paper.tex)
+% (Bibliography is inlined as thebibliography; no bibtex pass required.
+%  references.bib is kept alongside for optional bibtex regeneration.)
 % =====================================================================
 
 \documentclass[11pt,a4paper]{article}
@@ -1214,7 +1213,179 @@ speedup factors (supporting Section~\ref{sec:collapse}).
 The author declares no conflict of interest.
 
 % =====================================================================
-\bibliographystyle{unsrtnat}
-\bibliography{references}
+% Bibliography (inline thebibliography so the .tex file is self-contained;
+% no bibtex pass required at submission time). The 25 entries below
+% mirror references.bib, which is kept alongside as a convenience for
+% anyone wishing to regenerate the bibliography via bibtex.
+
+\begin{thebibliography}{99}
+
+\bibitem{Milgrom1983}
+M.~Milgrom.
+\newblock A modification of the {Newtonian} dynamics as a possible
+  alternative to the hidden mass hypothesis.
+\newblock {\em Astrophys.\ J.}, 270:365, 1983.
+  \href{https://doi.org/10.1086/161130}{doi:10.1086/161130}.
+
+\bibitem{Lelli2016}
+F.~Lelli, S.~S. McGaugh, and J.~M. Schombert.
+\newblock {SPARC}: Mass models for 175 disk galaxies with {Spitzer}
+  photometry and accurate rotation curves.
+\newblock {\em Astron.\ J.}, 152:157, 2016.
+  \href{https://doi.org/10.3847/0004-6256/152/6/157}{doi:10.3847/0004-6256/152/6/157}.
+
+\bibitem{Famaey2012}
+B.~Famaey and S.~S. McGaugh.
+\newblock Modified {Newtonian Dynamics (MOND)}: Observational
+  phenomenology and relativistic extensions.
+\newblock {\em Living Rev.\ Relativ.}, 15:10, 2012.
+  \href{https://doi.org/10.12942/lrr-2012-10}{doi:10.12942/lrr-2012-10}.
+
+\bibitem{Milgrom1999}
+M.~Milgrom.
+\newblock The modified dynamics as a vacuum effect.
+\newblock {\em Phys.\ Lett.\ A}, 253:273, 1999.
+  \href{https://doi.org/10.1016/S0375-9601(99)00077-8}{doi:10.1016/S0375-9601(99)00077-8}.
+
+\bibitem{McGaugh2004}
+S.~S. McGaugh.
+\newblock The mass discrepancy--acceleration relation: Disk mass and
+  the dark matter distribution.
+\newblock {\em Astrophys.\ J.}, 611:26, 2004.
+  \href{https://doi.org/10.1086/421901}{doi:10.1086/421901}.
+
+\bibitem{Planck2018}
+{Planck Collaboration}.
+\newblock {Planck} 2018 results. {VI.} Cosmological parameters.
+\newblock {\em Astron.\ Astrophys.}, 641:A6, 2020.
+  \href{https://doi.org/10.1051/0004-6361/201833910}{doi:10.1051/0004-6361/201833910}.
+
+\bibitem{Labbe2023}
+I.~Labb{\'e} et~al.
+\newblock A population of red candidate massive galaxies $\sim 600$~Myr
+  after the {Big Bang}.
+\newblock {\em Nature}, 616:266, 2023.
+  \href{https://doi.org/10.1038/s41586-023-05786-2}{doi:10.1038/s41586-023-05786-2}.
+
+\bibitem{BoylanKolchin2023}
+M.~Boylan-Kolchin.
+\newblock Stress testing $\Lambda$CDM with high-redshift galaxy
+  candidates.
+\newblock {\em Nat.\ Astron.}, 7:731, 2023.
+  \href{https://doi.org/10.1038/s41550-023-01937-7}{doi:10.1038/s41550-023-01937-7}.
+
+\bibitem{DESI2025}
+{DESI Collaboration}.
+\newblock {DESI DR2} results. {II.} Measurements of baryon acoustic
+  oscillations and cosmological constraints.
+\newblock arXiv:2503.14738, 2025.
+
+\bibitem{Ubler2017}
+H.~{\"U}bler et~al.
+\newblock The evolution of the {Tully--Fisher} relation between
+  $z \sim 2.3$ and $z \sim 0.9$ with {KMOS$^{\rm 3D}$}.
+\newblock {\em Astrophys.\ J.}, 842:121, 2017.
+  \href{https://doi.org/10.3847/1538-4357/aa733b}{doi:10.3847/1538-4357/aa733b}.
+
+\bibitem{Moster2013}
+B.~P. Moster, T.~Naab, and S.~D.~M. White.
+\newblock Galactic star formation and accretion histories from matching
+  galaxies to dark matter haloes.
+\newblock {\em Mon.\ Not.\ R.\ Astron.\ Soc.}, 428:3121, 2013.
+  \href{https://doi.org/10.1093/mnras/sts261}{doi:10.1093/mnras/sts261}.
+
+\bibitem{Duffy2008}
+A.~R. Duffy, J.~Schaye, S.~T. Kay, and C.~Dalla Vecchia.
+\newblock Dark matter halo concentrations in the {Wilkinson Microwave
+  Anisotropy Probe} year 5 cosmology.
+\newblock {\em Mon.\ Not.\ R.\ Astron.\ Soc.}, 390:L64, 2008.
+  \href{https://doi.org/10.1111/j.1745-3933.2008.00537.x}{doi:10.1111/j.1745-3933.2008.00537.x}.
+
+\bibitem{Wisnioski2015}
+E.~Wisnioski et~al.
+\newblock The {KMOS$^{\rm 3D}$} survey: Design, first results, and the
+  evolution of galaxy kinematics from $0.7 < z < 2.7$.
+\newblock {\em Astrophys.\ J.}, 799:209, 2015.
+  \href{https://doi.org/10.1088/0004-637X/799/2/209}{doi:10.1088/0004-637X/799/2/209}.
+
+\bibitem{Pointecouteau2005}
+E.~Pointecouteau and J.~Silk.
+\newblock New constraints on modified {Newtonian} dynamics from galaxy
+  clusters.
+\newblock {\em Mon.\ Not.\ R.\ Astron.\ Soc.}, 364:654, 2005.
+  \href{https://doi.org/10.1111/j.1365-2966.2005.09590.x}{doi:10.1111/j.1365-2966.2005.09590.x}.
+
+\bibitem{Sanders2003}
+R.~H. Sanders.
+\newblock Clusters of galaxies with modified {Newtonian} dynamics.
+\newblock {\em Mon.\ Not.\ R.\ Astron.\ Soc.}, 342:901, 2003.
+  \href{https://doi.org/10.1046/j.1365-8711.2003.06596.x}{doi:10.1046/j.1365-8711.2003.06596.x}.
+
+\bibitem{Angus2008}
+G.~W. Angus, B.~Famaey, and D.~A. Buote.
+\newblock {X-ray} group and cluster mass profiles in {MOND}: Unexplained
+  mass on the group scale.
+\newblock {\em Mon.\ Not.\ R.\ Astron.\ Soc.}, 387:1470, 2008.
+  \href{https://doi.org/10.1111/j.1365-2966.2008.13353.x}{doi:10.1111/j.1365-2966.2008.13353.x}.
+
+\bibitem{Millon2020}
+M.~Millon et~al.
+\newblock {TDCOSMO}: I. {An exploration of systematic uncertainties} in
+  the inference of $H_0$ from time-delay cosmography.
+\newblock {\em Astron.\ Astrophys.}, 639:A101, 2020.
+  \href{https://doi.org/10.1051/0004-6361/201937351}{doi:10.1051/0004-6361/201937351}.
+
+\bibitem{Wong2020}
+K.~C. Wong et~al.
+\newblock {H0LiCOW XIII}: A 2.4 per cent measurement of $H_0$ from
+  lensed quasars: $5.3\sigma$ tension between early- and
+  late-{Universe} probes.
+\newblock {\em Mon.\ Not.\ R.\ Astron.\ Soc.}, 498:1420, 2020.
+  \href{https://doi.org/10.1093/mnras/stz3094}{doi:10.1093/mnras/stz3094}.
+
+\bibitem{Euclid2024}
+{Euclid Collaboration}: Y.~Mellier et~al.
+\newblock {Euclid}: I. Overview of the {Euclid} mission.
+\newblock arXiv:2405.13491, 2024.
+
+\bibitem{Shatto2025}
+B.~Shatto.
+\newblock {Mode Identity Theory}: Modal realization from nested
+  topology.
+\newblock Zenodo, 2025.
+  \href{https://doi.org/10.5281/zenodo.18064856}{doi:10.5281/zenodo.18064856}.
+
+\bibitem{McGaugh2016}
+S.~S. McGaugh, F.~Lelli, and J.~M. Schombert.
+\newblock Radial acceleration relation in rotationally supported
+  galaxies.
+\newblock {\em Phys.\ Rev.\ Lett.}, 117:201101, 2016.
+  \href{https://doi.org/10.1103/PhysRevLett.117.201101}{doi:10.1103/PhysRevLett.117.201101}.
+
+\bibitem{Genzel2017}
+R.~Genzel et~al.
+\newblock Strongly baryon-dominated disk galaxies at the peak of galaxy
+  formation ten billion years ago.
+\newblock {\em Nature}, 543:397, 2017.
+  \href{https://doi.org/10.1038/nature21685}{doi:10.1038/nature21685}.
+
+\bibitem{Saveliev2012}
+N.~Saveliev.
+\newblock {\em Lectures on the Topology of 3-Manifolds: An Introduction
+  to the {Casson} Invariant}.
+\newblock de~Gruyter, Berlin, 2nd edition, 2012.
+
+\bibitem{McKay1980}
+J.~McKay.
+\newblock Graphs, singularities, and finite groups.
+\newblock In {\em Proceedings of Symposia in Pure Mathematics},
+  volume~37, page 183. American Mathematical Society, 1980.
+
+\bibitem{Wolf2011}
+J.~A. Wolf.
+\newblock {\em Spaces of Constant Curvature}.
+\newblock AMS Chelsea Publishing, Providence, RI, 6th edition, 2011.
+
+\end{thebibliography}
 
 \end{document}

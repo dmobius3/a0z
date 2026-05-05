@@ -15,20 +15,18 @@ directory holds the LaTeX rendering for journal submission.
 ```bash
 cd paper
 pdflatex a0z-paper
-bibtex   a0z-paper
-pdflatex a0z-paper
 pdflatex a0z-paper
 ```
 
-or, equivalently:
+Two passes are sufficient. The bibliography is inlined as a
+`thebibliography` environment so no bibtex pass is required.
 
-```bash
-latexmk -pdf a0z-paper.tex
-```
-
-Figures are pulled from `../figures/` via `\graphicspath`. Bibliography
-is in `references.bib`; bibstyle is `unsrtnat` (citation order matches
-the original [1]-[25] numbering of the markdown source).
+Figures are pulled from `../figures/` via `\graphicspath`. The
+companion `references.bib` is kept alongside as a convenience for
+regenerating the bibliography via bibtex if desired (replace the
+inline `\begin{thebibliography}...\end{thebibliography}` with
+`\bibliographystyle{unsrtnat}` plus `\bibliography{references}` and
+add a bibtex pass to the build).
 
 ## Files
 
