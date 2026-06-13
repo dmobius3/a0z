@@ -41,6 +41,15 @@
 \setlength{\parskip}{0.4em}
 \renewcommand{\arraystretch}{1.15}
 
+% --- float placement: keep [!ht] floats tight to their prose ---------
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.7}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+
 % --- figures path ----------------------------------------------------
 \graphicspath{{../figures/}{./figures/}}
 
@@ -252,7 +261,7 @@ $C(k) = C(120-k)$ collapses them to 6 unique phase-operator value
 pairs. Among the framework's six Fibonacci-well pairs, $(13, 34)$ is
 the unique match (Figure~\ref{fig:milgrom-sparsity}).
 
-\begin{figure}[t]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=0.85\linewidth]{figure1}
 \caption{Milgrom-ratio sparsity on the 120-domain. Of 7,021 unordered
@@ -304,6 +313,7 @@ The evolution $\afid(z) = \afid(0)\,\Ez$ from
 Section~\ref{sec:derivation} propagates into galactic observables
 through different powers of $\Ez$. We adopt the flat $\Lambda$CDM
 Friedmann form
+
 $\Ez = \sqrt{\Omega_m(1+z)^3 + \Omega_r(1+z)^4 + \Omega_\Lambda}$
 with Planck 2018 parameters \citep{Planck2018}
 ($\Omega_m = 0.315$, $\Omega_r = 9.2 \times 10^{-5}$,
@@ -313,7 +323,7 @@ $\Lambda$CDM is a transparency choice that allows direct comparison
 with published measurements. Table~\ref{tab:cosmology} provides the
 reference values consumed by the five channels below.
 
-\begin{table}[t]
+\begin{table}[!ht]
 \centering
 \caption{Predicted $\afid(z)$ and deep-MOND enhancement factor across
 the redshift range relevant to this paper.}
@@ -349,7 +359,7 @@ that fits the local SPARC sample inherits the same fractional
 evolution. At fixed baryonic mass, $\vflat(z) = \vflat(0)\,\Ez^{1/4}$;
 at fixed velocity, $\Mb(z) = \Mb(0)/\Ez$.
 
-\begin{table}[t]
+\begin{table}[!ht]
 \centering
 \caption{BTFR evolution at six reference redshifts.}
 \label{tab:btfr}
@@ -388,7 +398,7 @@ asymptotic velocity rises as $\Ez^{1/4}$ (from
 Section~\ref{sec:btfr}). Both scalings are mass-independent in the
 deep-MOND limit.
 
-\begin{table}[t]
+\begin{table}[!ht]
 \centering
 \caption{Predicted MOND radius and asymptotic velocity at $z = 0$ and
 $z = 2$ for four SPARC archetypes. The fractional shifts
@@ -435,7 +445,7 @@ The enhancement is mass-independent and aperture-independent (for
 $R \gg \rM$). At $z = 2$, $\Mdyn/\Mb$ is $74\%$ higher than at $z = 0$
 at any fixed mass and aperture (Figure~\ref{fig:lensing-discriminator}).
 
-\begin{figure}[t]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=0.85\linewidth]{figure2}
 \caption{Euclid DR1 lensing discriminator. Framework prediction
@@ -448,7 +458,7 @@ across the SPARC archetype range.}
 \label{fig:lensing-discriminator}
 \end{figure}
 
-\begin{table}[t]
+\begin{table}[!ht]
 \centering
 \caption{Predicted $\Mdyn/\Mb$ for the $L^*$ archetype at three lensing
 apertures.}
@@ -491,7 +501,7 @@ than $3\%$.
 \subsection{Summary: five exponents from one input}
 \label{sec:five-exponents}
 
-\begin{table}[t]
+\begin{table}[!ht]
 \centering
 \caption{The full predictive content of the evolving acceleration
 scale, evaluated at $z = 2$.}
@@ -511,7 +521,7 @@ Free-fall collapse time             & $\Ez^{-1/4}$  & 0.758 & JWST spectroscopy 
 \end{tabular}
 \end{table}
 
-\begin{figure}[t]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=0.85\linewidth]{figure3}
 \caption{Five exponents from one input. Each curve plots the predicted
@@ -554,7 +564,7 @@ high-$z$ BTFR substantially below the local relation. The trend shapes
 do not: the data are non-monotonic ($-0.44 \to -0.27$), the prediction
 strictly monotonic ($-0.227 \to -0.540$) (Figure~\ref{fig:ubler}).
 
-\begin{figure}[t]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=0.85\linewidth]{figure4}
 \caption{KMOS3D BTFR trend-shape tension. The framework predicts a
@@ -564,9 +574,11 @@ conservative systematics budget.}
 \label{fig:ubler}
 \end{figure}
 
+\newpage
+
 The tension is quantified across three uncertainty budgets:
 
-\begin{table}[t]
+\begin{table}[!ht]
 \centering
 \caption{Per-bin and joint $\sigma$-tension for the KMOS3D BTFR comparison
 under three uncertainty budgets.}
@@ -631,6 +643,8 @@ discrepancy is an open problem shared by all MOND-class theories
 \citep{Sanders2003,Angus2008,Famaey2012} and predates the present
 framework, which neither introduces nor resolves it.
 
+\newpage
+
 \subsection{The CMB at recombination}
 \label{sec:cmb}
 
@@ -680,7 +694,7 @@ independently.
 \subsection{Summary}
 \label{sec:constraint-summary}
 
-\begin{table}[t]
+\begin{table}[!ht]
 \centering
 \caption{Constraint status across five regimes.}
 \label{tab:constraint-status}
@@ -745,7 +759,7 @@ the prediction in a single dataset.
 
 \paragraph{Falsification criteria.}
 
-\begin{table}[t]
+\begin{table}[!ht]
 \centering
 \caption{Falsification criteria for the five Section~\ref{sec:channels}
 predictions. A matched-systematics discrepancy at $\geq 2\sigma$ is
@@ -773,7 +787,7 @@ the $\Lambda$CDM alternative is not. A mass- and aperture-stratified
 Euclid analysis tests both the magnitude of the prediction and its
 universality simultaneously.
 
-\begin{table}[t]
+\begin{table}[!ht]
 \centering
 \caption{Near-term test schedule.}
 \label{tab:schedule}
@@ -1030,7 +1044,7 @@ appendix specifies the parameterization.
 
 Four baryonic-mass archetypes span the SPARC range:
 
-\begin{table}[!htbp]
+\begin{table}[!ht]
 \centering
 \caption{Baryonic-mass archetypes spanning the SPARC range.}
 \label{tab:archetypes}
@@ -1050,7 +1064,7 @@ Representative halo masses and concentrations at the $L^*$ archetype,
 consistent with the Moster et~al.\ \citep{Moster2013} stellar-to-halo mass relation and
 the Duffy et~al.\ \citep{Duffy2008} concentration evolution:
 
-\begin{table}[!htbp]
+\begin{table}[!ht]
 \centering
 \caption{Representative halo masses and concentrations at the $L^*$
 archetype.}
@@ -1102,7 +1116,7 @@ Eq.~\ref{eq:lensing}).
 At the canonical $R = 100$~kpc aperture, the $\Lambda$CDM $\Mdyn/\Mb$
 ratio at $z = 2$ relative to $z = 0$ is:
 
-\begin{table}[!htbp]
+\begin{table}[!ht]
 \centering
 \caption{$\Lambda$CDM $\Mdyn/\Mb$ ratio at $z = 2$ relative to $z = 0$,
 versus the framework's universal prediction.}
@@ -1129,7 +1143,7 @@ Table~\ref{tab:bracketing} evaluates the same NFW pipeline under
 pessimistic and optimistic SHMR $+$ concentration parameterizations at
 the $L^*$ archetype, $R = 100$~kpc.
 
-\begin{table}[!htbp]
+\begin{table}[!ht]
 \centering
 \caption{$\Lambda$CDM $L^*$ $\Mdyn/\Mb$ at $R = 100$~kpc under three
 parameterizations, against the framework's universal prediction.}
