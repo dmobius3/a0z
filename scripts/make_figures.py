@@ -201,23 +201,8 @@ def figure1_sparsity() -> Tuple[str, str]:
                 color="tab:blue", edgecolor="black", linewidth=0.6,
                 zorder=5,
             )
-            # Tag the (13, 34) star above the right-side caption box so
-            # that both annotations live on the right-hand side. The
-            # leader is an L-shape (angle3 connection): leaves the text
-            # going LEFT, then turns and approaches the star from
-            # ABOVE. The horizontal leg sits at y ≈ 1.05 (above box
-            # top); the vertical leg is at x = r (left of the box).
-            # The line never crosses the caption-box interior.
-            ax_bot.annotate(
-                r"$(13,\,34)$", xy=(r, 0.50),
-                xytext=(zoom_hi - 0.0005, 1.05),
-                fontsize=10, color="tab:blue",
-                ha="right", va="center",
-                arrowprops=dict(
-                    arrowstyle="-", color="tab:blue", linewidth=0.6,
-                    connectionstyle="angle3,angleA=90,angleB=180",
-                ),
-            )
+            # The (13, 34) pair is identified by the legend entry below;
+            # no on-plot tag (it collided with the caption box).
         else:
             ax_bot.vlines(r, 0.20, 0.80, color="tab:orange",
                           linewidth=1.6, zorder=3)
