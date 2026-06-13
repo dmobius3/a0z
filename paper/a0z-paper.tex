@@ -2,35 +2,24 @@
 % a0z paper: "Epoch-Dependent Acceleration Scale from Bounded Topology:
 %             Predictions for High-Redshift Galactic Dynamics"
 % Author: B. Shatto (Independent Researcher)
-% Target journal: Foundations of Physics (Springer)
+% Preprint, single-column article class, for open-archive deposit.
 %
 % Build:
 %   pdflatex a0z-paper
 %   pdflatex a0z-paper
 % (Bibliography is inlined as thebibliography; no bibtex pass required.
 %  references.bib is kept alongside for optional bibtex regeneration.)
-%
-% Class: Springer svjour3 in single-column "smallextended" layout.
-% svjour3.cls + svglov3.clo + sp{basic,phys,mpsci}.bst are bundled in
-% this directory (sourced from https://github.com/latextemplates/svjour,
-% upstream copyright Springer; only valid for Springer-journal
-% submissions).
 % =====================================================================
 
-\documentclass[smallextended]{svjour3}
-% \documentclass[11pt,a4paper]{article}   % review/draft fallback
-\journalname{Found.\ Phys.}
+\documentclass[11pt,a4paper]{article}
 
 % --- core packages ---------------------------------------------------
-% svjour3 already sets page geometry and loads basic font/encoding
-% support; only the analysis-content packages are added here.
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{microtype}
+\usepackage[a4paper,margin=1in]{geometry}
 \usepackage{amsmath,amssymb}
-% NOTE: svjour3 provides its own theorem/proof environments; do NOT load
-% amsthm or its \proof macro will collide with svjour3's.
 \usepackage{mathtools}
 \usepackage{graphicx}
 \usepackage{booktabs}
@@ -41,6 +30,7 @@
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage{enumitem}
 \usepackage{caption}
+\usepackage{authblk}
 
 % --- numbering -------------------------------------------------------
 \numberwithin{equation}{section}
@@ -78,17 +68,10 @@
 \title{Epoch-Dependent Acceleration Scale from Bounded Topology:\\
        Predictions for High-Redshift Galactic Dynamics}
 
-\titlerunning{Epoch-Dependent Acceleration Scale}
-
-\author{B. Shatto}
-
-\authorrunning{B. Shatto}
-
-\institute{B. Shatto \at
-   Independent Researcher, St.~Petersburg, FL, USA \\
-   \email{bshatto.pe@gmail.com} \\
-   ORCID: \href{https://orcid.org/0009-0007-4419-1311}{0009-0007-4419-1311}
-}
+\author[1]{B.~Shatto\thanks{%
+   Email: \href{mailto:bshatto.pe@gmail.com}{bshatto.pe@gmail.com}.\
+   ORCID: \href{https://orcid.org/0009-0007-4419-1311}{0009-0007-4419-1311}.}}
+\affil[1]{Independent Researcher, St.~Petersburg, FL, USA}
 
 \date{\today}
 
