@@ -180,9 +180,6 @@ def figure1_sparsity() -> Tuple[str, str]:
         r"$\min\,[\,C(k_1/120)/C(k_2/120),\ C(k_2/120)/C(k_1/120)\,]$"
     )
     ax_top.set_ylabel("Number of unordered pairs")
-    ax_top.set_title(
-        r"Figure 1 (§2): Milgrom-ratio sparsity on the 120-domain"
-    )
     ax_top.set_xlim(0.0, 1.0)
     ax_top.legend(loc="upper right", frameon=False, fontsize=9)
 
@@ -331,7 +328,6 @@ def figure2_lensing_discriminator() -> Tuple[str, str]:
 
     ax.set_xlabel(r"Aperture $R$ [kpc]")
     ax.set_ylabel(r"$M_\mathrm{dyn}(R)\,/\,M_b$ at $L^*$")
-    ax.set_title(r"Figure 2 (§3.3 + App B): Euclid DR1 lensing discriminator")
     ax.set_xlim(10, 500)
     ax.legend(loc="upper left", frameon=False, fontsize=8.5, ncol=1)
     ax.grid(True, which="both", linestyle=":", alpha=0.4)
@@ -404,7 +400,6 @@ def figure3_five_exponents() -> Tuple[str, str]:
     ax.set_yscale("log")
     ax.set_xlabel(r"Redshift $z$")
     ax.set_ylabel(r"Observable / observable at $z = 0$")
-    ax.set_title(r"Figure 3 (§3.5): Five exponents from one input")
     ax.set_xlim(0.0, 5.2)
     ax.set_ylim(0.04, 30.0)
     ax.legend(loc="upper left", frameon=False, fontsize=8.5)
@@ -477,7 +472,6 @@ def figure4_ubler_tension() -> Tuple[str, str]:
     ax.axhline(0.0, color="grey", linestyle=":", alpha=0.5)
     ax.set_xlabel(r"Redshift $z$")
     ax.set_ylabel(r"BTFR zero-point shift $\Delta b$ [dex]")
-    ax.set_title(r"Figure 4 (§4.1): Übler trend-shape tension")
     ax.set_xlim(0.0, 3.0)
     ax.set_ylim(-0.65, 0.10)
     ax.legend(loc="upper right", frameon=False, fontsize=9)
